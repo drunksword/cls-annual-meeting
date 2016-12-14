@@ -102,8 +102,7 @@ div.voteSuccess {font-size: 40px;text-align: center;margin-top: 80px;}
   -webkit-transition-duration: .3s;
           transition-duration: .3s;
   width:60%;
-  margin-left: 20%;
-  margin-top: 40px;
+  margin: 40px 0 60px 20%;
   height:60px; 
   font-size: 32px;
   }
