@@ -16,6 +16,7 @@
 
 <script>
 import Program from './components/Program'
+import CommonUtil from './CommonUtil.js'
 
 export default {
   name: 'app',
@@ -50,7 +51,13 @@ export default {
         console.log('您最多只能选择两个节目')
         // alert('您最多只能选择两个节目')
       } else {
-        this.$store.state.currentPage = 'voteRlt'
+        CommonUtil.callRestAPI('/vote/vote', 'POST', {'voteProList': voteProList}, function (status, respJson) {
+          if (respJson.succ === 0) {
+            console.log(respJson.message)
+            return
+          }
+          this.$store.state.currentPage = 'voteRlt'
+        })
       }
     }
   }
@@ -61,10 +68,14 @@ export default {
 html, body {height: 100%;}
 body {margin: 0px;}
 h2 {text-align: center;}
-.dishBox {columns: auto 2;column-gap: 30px;column-span: none; margin: 0px 30px;}
+.dishBox {-webkit-columns: auto 2;-webkit-column-gap: 30px;column-span: none; margin: 0px 30px;}
 div.hasSelected {text-align: center;font-size: 25px;margin-top: 20px;}
 div.hasSelected span{color:red;font-size: 30px;}
 div.voteSuccess {font-size: 40px;text-align: center;margin-top: 80px;}
+
+/* 弹出的提示层 */
+#toast{padding: 16px 5px; position: fixed; top: 200px; z-index: 990; background-color: #666; font-size: 28px; border-radius: 8px; text-align: center; color: #FFF; transition: opacity 2s; }
+.toastmessage{text-align:center; padding:50px 30px; transition: opacity 2s; }
 
 .button {
   color: #fff;
