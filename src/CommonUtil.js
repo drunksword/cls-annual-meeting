@@ -100,7 +100,7 @@ function callRestAPI (url, method, data, onRespSuccess, onRespError, options) {
       var json = null
       try {
         if (req.responseText !== '') {
-          JSON.parse(req.responseText)
+          json = JSON.parse(req.responseText)
         } else {
           json = {message: '服务器未返回任何数据。'}
         }

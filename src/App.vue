@@ -51,12 +51,13 @@ export default {
         console.log('您最多只能选择两个节目')
         // alert('您最多只能选择两个节目')
       } else {
+        var con = this
         CommonUtil.callRestAPI('/vote/vote', 'POST', {'voteProList': voteProList}, function (status, respJson) {
           if (respJson.succ === 0) {
             console.log(respJson.message)
             return
           }
-          this.$store.state.currentPage = 'voteRlt'
+          con.$store.state.currentPage = 'voteRlt'
         })
       }
     }

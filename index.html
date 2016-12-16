@@ -2,7 +2,30 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>my-project</title>
+    <title>柱形图</title>
+    <meta name="viewport" content="width=device-width"/>
+<script>
+var initialScale = 0.5;
+var vpWidth=640;
+var winWidths=window.screen.availWidth;
+var viewport = document.querySelector("meta[name=viewport]");
+// var densityDpi=640/winWidths;
+if(winWidths>=720){
+    vpWidth=720;
+}
+if((window.navigator.appVersion.match(/iphone/gi) || window.navigator.appVersion.match(/ipad/gi) || window.navigator.appVersion.match(/android/gi)) && !window.navigator.appVersion.match(/windows/gi)){
+    viewport.setAttribute('content', 'width=device-width,initial-scale='+initialScale+', maximum-scale='+initialScale+', minimum-scale='+initialScale+', user-scalable=yes');
+}else{ 
+     if(window.navigator.appVersion.match(/windows/gi)){
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+                    WeixinJSBridge.call('hideToolbar');
+                });
+        viewport.setAttribute('content', 'width='+vpWidth+',initial-scale='+initialScale+', maximum-scale='+initialScale+', minimum-scale='+initialScale+', user-scalable=yes');
+     }else{
+         viewport.setAttribute('content', 'width='+vpWidth+',initial-scale='+initialScale+', maximum-scale='+initialScale+', minimum-scale='+initialScale+', user-scalable=yes');
+     }
+}
+</script>  
   </head>
   <body>
     <div id="app"></div>
