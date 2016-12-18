@@ -18,8 +18,7 @@ function showToast (msg, ms) {
     ele.id = 'toast'
     ele.style.display = 'block'
     ele.style.zIndex = 665
-    ele.style.width = (document.body.offsetWidth - 50) + 'px'
-    ele.style.margin = '0px 25px'
+    ele.style.width = (document.body.offsetWidth - 60) + 'px'
     document.body.appendChild(ele)
     var eleChild = document.createElement('div')
     eleChild.className = 'toastmessage'
@@ -88,7 +87,7 @@ function callRestAPI (url, method, data, onRespSuccess, onRespError, options) {
   }
 
   var req = new window.XMLHttpRequest()
-  req.open(method, 'http://' + 'shitao.clschina.com' + '/nianhui2016/rest' + url, true)
+  req.open(method, 'http://' + document.domain + '/nianhui2016/rest' + url, true)
   req.setRequestHeader('Accept', 'application/json')
   req.onreadystatechange = function () {
     if (req.readyState === 4) {

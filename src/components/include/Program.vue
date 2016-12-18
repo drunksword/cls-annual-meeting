@@ -4,7 +4,7 @@
 		<div class="name">{{ data.name	}}</div>
 		<div>
 			<button class="button button-raised button-action button-circle button-jumbo"><i class="fa fa-thumbs-up"></i></button>
-			<img class="selected" v-show="selected" src="../assets/king3fat.gif">
+			<img class="selected" v-show="selected" src="../../assets/king3fat.gif">
 		</div>
 	</div>
 </template>
