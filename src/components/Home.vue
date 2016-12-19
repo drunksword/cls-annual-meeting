@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import Socket from '../Socket.js'
+
 export default {
   name: 'home',
   data () {
@@ -42,9 +44,6 @@ export default {
     for (var i = this.voteCount.length - 1; i >= 0; i--) {
       this.totalVote += this.voteCount[i].num
     }
-
-    var endPointURL = 'ws://' + window.location.host + '/nianhui2016/chat'
-    this.$store.state.chatClient = new WebSocket(endPointURL)
   },
   destroyed () {
     this.$store.state.chatClient.close()
