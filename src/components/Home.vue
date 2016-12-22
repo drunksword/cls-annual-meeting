@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import Socket from '../Socket.js'
+import VOTE from '../Socket.js'
 
 export default {
   name: 'home',
@@ -44,6 +44,7 @@ export default {
     for (var i = this.voteCount.length - 1; i >= 0; i--) {
       this.totalVote += this.voteCount[i].num
     }
+
   },
   destroyed () {
     this.$store.state.chatClient.close()
