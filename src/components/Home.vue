@@ -22,7 +22,8 @@
         <div class="bar gray" v-bind:data-percentage="voteCount[4].num" v-bind:style="{ width: voteCount[4].num  + '%'}"></div>
       </li>
     </ul>
-    <div class="tongji">投票人数：{{ votedPerson }}， 总票数：{{ totalVote }}</div>
+    <div class="tongji">投票人数：{{ VOTE.votePeople }}， 总票数：{{ VOTE.voteCount }}</div>
+    <div class="online">在线人数：{{ VOTE.onlineCount }}</div>
     <button v-on:click="goVote()">去投票</button>
   </div>
 </template>
@@ -34,20 +35,22 @@ export default {
   name: 'home',
   data () {
     return {
-      voteCount: [{num: 21}, {num: 78}, {num: 90}, {num: 40}, {num: 56}],
+      voteCount: [{num: 0}, {num: 0}, {num: 0}, {num: 0}, {num: 0}],
       votedPerson: 80,
-      totalVote: 0
+      totalVote: 0,
+      VOTE
     }
   },
   created () {
-    this.countUp(0, [21, 78, 90, 40, 56], 1500, this.voteCount)
-    for (var i = this.voteCount.length - 1; i >= 0; i--) {
-      this.totalVote += this.voteCount[i].num
-    }
-
+    VOTE.init()
+    // this.voteCount = VOTE.voteDetail
+    // console.log('home:' + VOTE.voteDetail)
+    // this.countUp(0, [21, 78, 90, 40, 56], 1500, this.voteCount)
+    // for (var i = this.voteCount.length - 1; i >= 0; i--) {
+    //   this.totalVote += this.voteCount[i].num
+    // }
   },
   destroyed () {
-    this.$store.state.chatClient.close()
   },
   methods: {
     countUp (startVal, endValList, duration, voteCount) {
@@ -77,6 +80,7 @@ export default {
 <style scoped>
 ul{margin-top: 10px;}
 div.tongji{text-align: center;margin-top: 60px;}
+.online{text-align: center;}
 
 *, *:before, *:after {
   box-sizing: border-box;
