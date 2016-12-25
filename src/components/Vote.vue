@@ -11,6 +11,7 @@
 <script>
 import Program from './include/Program'
 import CommonUtil from '../CommonUtil.js'
+import VOTE from '../Socket.js'
 
 export default {
   name: 'vote',
@@ -27,6 +28,9 @@ export default {
                     {id: 5, name: '大变活人5', img: require('../assets/logo.png')}]
     }
   },
+  created () {
+    this.$store.commit('setPage', 'vote')
+  },
   computed: {
     count () {
       if (this.$store.state.voteProList.length === 0) {
@@ -40,19 +44,18 @@ export default {
       var voteProList = this.$store.state.voteProList
       if (voteProList.length === 0) {
         CommonUtil.showToast('您尚未选择节目')
-        // alert('您尚未选择节目')
       } else if (voteProList.length > 2) {
         CommonUtil.showToast('您最多只能选择两个节目')
-        // alert('您最多只能选择两个节目')
       } else {
         var con = this
-        CommonUtil.callRestAPI('/vote/vote', 'POST', {'voteProList': voteProList}, function (status, respJson) {
-          if (respJson.succ === 0) {
-            console.log(respJson.message)
-            return
-          }
-          con.$router.push({name: 'voteRlt'})
-        })
+        VOTE.vote(voteProList, con)
+        // CommonUtil.callRestAPI('/vote/vote', 'POST', {'voteProList': voteProList}, function (status, respJson) {
+        //   if (respJson.succ === 0) {
+        //     console.log(respJson.message)
+        //     return
+        //   }
+        //   con.$router.push({name: 'voteRlt'})
+        // })
       }
     }
   }

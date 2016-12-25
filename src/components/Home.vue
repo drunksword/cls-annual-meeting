@@ -24,7 +24,9 @@
     </ul>
     <div class="tongji">投票人数：{{ VOTE.votePeople }}， 总票数：{{ VOTE.voteCount }}</div>
     <div class="online">在线人数：{{ VOTE.onlineCount }}</div>
-    <button v-on:click="goVote()">去投票</button>
+    <button v-on:click="goVote()" v-if="VOTE.hasVoteDetail.length == 0">去投票</button>
+    <button v-on:click="goVote()" v-if="VOTE.hasVoteDetail.length == 1">去投票 <span>(您已投节目{{VOTE.hasVoteDetail[0]}},还可投一票)</span></button>
+    <button disabled="disabled" v-if="VOTE.hasVoteDetail.length == 2">您已经投过两票（节目{{VOTE.hasVoteDetail[0]}}，节目{{VOTE.hasVoteDetail[1]}}）</button>
   </div>
 </template>
 
@@ -35,41 +37,18 @@ export default {
   name: 'home',
   data () {
     return {
-      voteCount: [{num: 0}, {num: 0}, {num: 0}, {num: 0}, {num: 0}],
-      votedPerson: 80,
-      totalVote: 0,
+      voteCount: VOTE.voteDetail,
       VOTE
     }
   },
   created () {
-    VOTE.init()
-    // this.voteCount = VOTE.voteDetail
-    // console.log('home:' + VOTE.voteDetail)
-    // this.countUp(0, [21, 78, 90, 40, 56], 1500, this.voteCount)
-    // for (var i = this.voteCount.length - 1; i >= 0; i--) {
-    //   this.totalVote += this.voteCount[i].num
-    // }
+    VOTE.getVoteInfo()
+    this.$store.commit('setPage', 'home')
   },
   destroyed () {
+    // VOTE.logout()
   },
   methods: {
-    countUp (startVal, endValList, duration, voteCount) {
-      var startTime = 0
-      var progress, value
-      function startCount (timestamp) {
-        if (!startTime) {
-          startTime = timestamp
-        }
-        progress = timestamp - startTime
-        for (var i = 0; i < endValList.length; i++) {
-          value = startVal + (endValList[i] - startVal) * (progress / duration)
-          value = (value > endValList[i]) ? endValList[i] : value
-          voteCount[i].num = value.toFixed(0)
-        }
-        progress < duration && window.requestAnimationFrame(startCount)
-      }
-      window.requestAnimationFrame(startCount)
-    },
     goVote () {
       this.$router.push({name: 'vote'})
     }
@@ -81,6 +60,8 @@ export default {
 ul{margin-top: 10px;}
 div.tongji{text-align: center;margin-top: 60px;}
 .online{text-align: center;}
+button span{font-size: 28px;}
+div.online{color:gray;font-size: 25px;margin-top: 20px;}
 
 *, *:before, *:after {
   box-sizing: border-box;

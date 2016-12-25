@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="voteSuccess">投票成功。</div>
+    <button v-on:click="backToHome">查看投票结果</button>
   </div>
 </template>
 
@@ -11,7 +12,13 @@
       return {
       }
     },
+    created () {
+      this.$store.commit('setPage', 'voteRlt')
+    },
     methods: {
+      backToHome () {
+        this.$router.push({ path: '/' })
+      }
     }
   }
 </script>
