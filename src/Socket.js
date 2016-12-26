@@ -13,7 +13,7 @@ const VOTE = {
   hasVoteDetail: [],
 
   init: function () {
-    this.socket = io.connect('ws://localhost:3000')
+    this.socket = io.connect('ws://shitao.clschina.com')
     if (!window.localStorage.UUID) {
       window.localStorage.UUID = guid()
     }

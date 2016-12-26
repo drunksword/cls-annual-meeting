@@ -5,27 +5,27 @@
     <title></title>
     <meta name="viewport" content="width=device-width"/>
 <script>
-var initialScale = 0.5;
 var vpWidth=640;
 var winWidths=window.screen.availWidth;
 var viewport = document.querySelector("meta[name=viewport]");
 // var densityDpi=640/winWidths;
 if(winWidths>=720){
-    vpWidth=720;
+  vpWidth=720;
+//     densityDpi=vpWidth/winWidths;
 }
-if((window.navigator.appVersion.match(/iphone/gi) || window.navigator.appVersion.match(/ipad/gi) || window.navigator.appVersion.match(/android/gi)) && !window.navigator.appVersion.match(/windows/gi)){
-    viewport.setAttribute('content', 'width=device-width,initial-scale='+initialScale+', maximum-scale='+initialScale+', minimum-scale='+initialScale+', user-scalable=yes');
+// densityDpi= densityDpi>1?300*640*densityDpi/vpWidth:densityDpi;
+if((window.navigator.appVersion.match(/iphone/gi) || window.navigator.appVersion.match(/ipad/gi)) && !window.navigator.appVersion.match(/windows/gi)){
+    viewport.setAttribute('content', 'width=device-width,initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=yes');
 }else{ 
-     if(window.navigator.appVersion.match(/windows/gi)){
-        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-                    WeixinJSBridge.call('hideToolbar');
-                });
-        viewport.setAttribute('content', 'width='+vpWidth+',initial-scale='+initialScale+', maximum-scale='+initialScale+', minimum-scale='+initialScale+', user-scalable=yes');
-     }else{
-         viewport.setAttribute('content', 'width='+vpWidth+',initial-scale='+initialScale+', maximum-scale='+initialScale+', minimum-scale='+initialScale+', user-scalable=yes');
-     }
+   if(window.navigator.appVersion.match(/windows/gi)){
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            WeixinJSBridge.call('hideToolbar');
+        });
+     viewport.setAttribute('content', 'width='+vpWidth+',initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes');
+   }else{
+     viewport.setAttribute('content', 'width='+vpWidth+',initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=yes');
+   }
 }
-
 </script>  
   </head>
   <body>

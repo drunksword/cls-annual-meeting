@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style scoped>
-.dishBox {-webkit-columns: auto 2;-webkit-column-gap: 30px;column-span: none; margin: 0px 30px;}
+.dishBox {margin: 0px 30px;}
 div.hasSelected {text-align: center;font-size: 25px;margin-top: 20px;}
 div.hasSelected span{color:red;font-size: 30px;}
 </style>

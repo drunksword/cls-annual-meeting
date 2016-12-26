@@ -72,9 +72,10 @@ li.bar-wrap {
   overflow: hidden;
 }
 li.bar-wrap label {
-  font-size: 25px;
+  font-size: 28px;
+  height: 28px;
   color: #8a8a8a;
-  margin: 0 0 10px 0;
+  margin: 0 0 15px 0;
   display: block;
 }
 li.bar-wrap div.bar {
@@ -88,8 +89,8 @@ li.bar-wrap div.bar:after {
   position: absolute;
   top: 0;
   right: 0;
-  height: 40px;
-  padding: 10px;
+  padding-right: 10px;
+  line-height: 50px;
   color: #FFF;
 }
 li.bar-wrap div.bar.blue {

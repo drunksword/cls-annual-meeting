@@ -29,7 +29,7 @@
 </script>
 
 <style scoped>
-	.program{padding-bottom: 30px;text-align: center;break-inside: avoid-column;}
+	.program{padding-bottom: 30px;text-align: center;display: inline-block;width: 50%;}
 	.program img{width:140px; height: 140px;}
 	.program img.selected{width:50px; height: 50px;position: relative;top: 10px;}
 	div.name{text-align: center;font-size: 32px;line-height: 32px;}
