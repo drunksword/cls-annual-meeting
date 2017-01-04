@@ -25,8 +25,6 @@
     <div class="tongji">投票人数：{{ VOTE.votePeople }}， 总票数：{{ VOTE.voteCount }}</div>
     <div class="online">在线人数：{{ VOTE.onlineCount }}</div>
     <button v-on:click="goVote()" v-if="VOTE.hasVoteDetail.length == 0">去投票</button>
-    <button v-on:click="goVote()" v-if="VOTE.hasVoteDetail.length == 1">去投票 <span>(您已投节目{{VOTE.hasVoteDetail[0]}},还可投一票)</span></button>
-    <button disabled="disabled" v-if="VOTE.hasVoteDetail.length == 2">您已经投过两票（节目{{VOTE.hasVoteDetail[0]}}，节目{{VOTE.hasVoteDetail[1]}}）</button>
   </div>
 </template>
 
@@ -60,7 +58,7 @@ export default {
 ul{margin-top: 10px;}
 div.tongji{text-align: center;margin-top: 60px;}
 .online{text-align: center;}
-button span{font-size: 28px;}
+button{background: url(../assets/icons.png) 145px -412px no-repeat; background-size: 300px 800px;height: 80px;width:100%;border:none;margin-top: 200px;}
 div.online{color:gray;font-size: 25px;margin-top: 20px;}
 
 *, *:before, *:after {
@@ -73,7 +71,6 @@ li.bar-wrap {
 }
 li.bar-wrap label {
   font-size: 28px;
-  height: 28px;
   color: #8a8a8a;
   margin: 0 0 15px 0;
   display: block;

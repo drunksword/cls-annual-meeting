@@ -11,7 +11,7 @@ const router = new VueRouter({
   routes: [
     {path: '/', name: 'home', component: resolve => require(['./components/Home'], resolve)},
     {path: '/vote', name: 'vote', component: resolve => require(['./components/Vote'], resolve)},
-    {path: '/voteRlt', name: 'voteRlt', component: resolve => require(['./components/VoteRlt'], resolve)},
+    {path: '/voteRule', name: 'voteRule', component: resolve => require(['./components/VoteRule'], resolve)},
     {path: '/unsupported', name: 'unsupported', component: resolve => require(['./components/Unsupported'], resolve)}
   ]
 })

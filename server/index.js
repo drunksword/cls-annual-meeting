@@ -57,34 +57,35 @@ io.on('connection', function(socket){
 	//监听用户投票
 	socket.on('vote', function(obj){
 		var voteProList = obj.voteProList
-		var message = ''
-		var succ = 0;
-		if(voteProList.length < 1 || voteProList.length > 2){
-			message = '您只能投最多2票。'
-		}else{
-			if(votePersonDetail.hasOwnProperty(socket.name)){
-				var hasVoteList = votePersonDetail[socket.name]
-				if(hasVoteList.length + voteProList.length > 2){
-					message = '错误：投票总数超过2票。'
-				}else{
-					if(voteProList[0] == hasVoteList[0]){
-						message = '您重复投了节目' + voteProList[0] + ',请重新投票。'
-					}else{
-						hasVoteList[1] = voteProList[0]
-						succ = 1 
-					}
-				}
-			}else{
-				votePersonDetail[socket.name] = voteProList
-				succ = 1
+		var message = '', succ = 0
+		var temp = votePersonDetail[socket.name]
+		if(voteProList.length > 3){
+			message = '您只能投最多3票。'
+		}else if(voteProList.length == 0){
+			if(!votePersonDetail.hasOwnProperty(socket.name)){
+				return // nothing happened
+			}
+			delete votePersonDetail[socket.name]
+			votePeople--
+			succ = 1
+		}else {
+			if(!votePersonDetail.hasOwnProperty(socket.name)){
 				votePeople++
 			}
+			votePersonDetail[socket.name] = voteProList
+			succ = 1
 		}
 		socket.emit('voteResult', {message: message, succ: succ})
 		if(succ == 1){
 			for (var i = 0; i < voteProList.length; i++) {
 				voteDetail[voteProList[i] - 1].num++
 				console.log('节目票数：' + voteDetail[voteProList[i] - 1].num)
+			}
+			if(temp){ // 去掉以前的票数
+				for (var i = 0; i < temp.length; i++) {
+					voteDetail[temp[i] - 1].num--
+					console.log('节目票数：' + voteDetail[temp[i] - 1].num)
+				}
 			}
 			io.emit('voteChange', {votePeople: votePeople, voteDetail: voteDetail})
 		}

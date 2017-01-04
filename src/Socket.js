@@ -53,8 +53,8 @@ const VOTE = {
         CommonUtil.showToast(obj.message)
         return
       }
-      VOTE.con.$router.push({name: 'voteRlt'})
-      VOTE.con.$store.commit('cleanVote') // 清空数组元素
+      VOTE.con.$router.push({name: 'home'})
+      // VOTE.con.$store.commit('cleanVote') // 清空数组元素
     })
   },
 

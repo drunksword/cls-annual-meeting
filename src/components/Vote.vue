@@ -1,10 +1,9 @@
 <template>
   <div>
-    <div class="dishBox" >
+    <div class="dishBox">
       <program v-for="item in programList" :data="item">
     </div>
-    <div class="hasSelected">已选节目: <span>{{ count }}</span></div>
-    <button v-on:click="submitVote">投　票</button>
+    <button v-on:click="submitVote"></button>
   </div>
 </template>
 
@@ -21,11 +20,11 @@ export default {
   data () {
     return {
       state: this.$store.state,
-      programList: [{id: 1, name: '大变活人1', img: require('../assets/logo.png')},
-                    {id: 2, name: '大变活人2', img: require('../assets/logo.png')},
-                    {id: 3, name: '大变活人3', img: require('../assets/logo.png')},
-                    {id: 4, name: '大变活人4', img: require('../assets/logo.png')},
-                    {id: 5, name: '大变活人5', img: require('../assets/logo.png')}]
+      programList: [{id: 1, name: '大变活人1', actor: 'xxx', img: require('../assets/logo.png')},
+                    {id: 2, name: '大变活人2', actor: 'xxx', img: require('../assets/logo.png')},
+                    {id: 3, name: '大变活人3', actor: 'xxx', img: require('../assets/logo.png')},
+                    {id: 4, name: '大变活人4', actor: 'xxx', img: require('../assets/logo.png')},
+                    {id: 5, name: '大变活人5', actor: 'xxx', img: require('../assets/logo.png')}]
     }
   },
   created () {
@@ -42,10 +41,8 @@ export default {
   methods: {
     submitVote: function () {
       var voteProList = this.$store.state.voteProList
-      if (voteProList.length === 0) {
-        CommonUtil.showToast('您尚未选择节目')
-      } else if (voteProList.length > 2) {
-        CommonUtil.showToast('您最多只能选择两个节目')
+      if (voteProList.length > 3) {
+        CommonUtil.showToast('您最多只能选择三个节目')
       } else {
         var con = this
         VOTE.vote(voteProList, con)
@@ -64,6 +61,5 @@ export default {
 
 <style scoped>
 .dishBox {margin: 0px 30px;}
-div.hasSelected {text-align: center;font-size: 25px;margin-top: 20px;}
-div.hasSelected span{color:red;font-size: 30px;}
+button{background: url(../assets/icons.png) 145px -238px no-repeat; background-size: 300px 800px;height: 80px;width:100%;border:none;}
 </style>
