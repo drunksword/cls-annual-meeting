@@ -42,11 +42,12 @@ export default {
   .program .icon{background: url(../../assets/icons.png) no-repeat; background-size: 200px 500px;}
 	.program .head{background-position: -15px -319px;height: 75px;}
   .program .body{background: url(../../assets/icon_bg.png) repeat-y;background-position: 47px 0px; height: 150px;background-size: 77px 25px;
-    color:white;font-weight: bold;writing-mode: vertical-rl;width: 100%;}
-  .program .body div{position: relative;right: 42%;}
+    color:white;font-weight: bold;width: 100%;}
+  .program .body div{position: relative;margin: 0 auto; writing-mode: vertical-rl;}
   .program .foot{background-position: -14px -455px;height: 30px;}
 
-  .program .voteLine .left{top:-21px;position: relative;}
+  .program .actorLine{margin-top: 15px;} 
+  .program .voteLine .left{top:-25px;position: relative;}
 	.program .select{background-position: -72px -76px;height: 67px;width: 57px;display: inline-block;}
   .program .selected{background-position: -72px -5px;}
 </style>

@@ -13,7 +13,12 @@ const VOTE = {
   hasVoteDetail: [],
 
   init: function () {
-    this.socket = io.connect('ws://shitao.clschina.com')
+    var home = true
+    if (home) {
+      this.socket = io.connect('ws://192.168.3.3')
+    } else {
+      this.socket = io.connect('ws://shitao.clschina.com')
+    }
     if (!window.localStorage.UUID) {
       window.localStorage.UUID = guid()
     }

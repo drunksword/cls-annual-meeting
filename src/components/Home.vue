@@ -24,7 +24,7 @@
     </ul>
     <div class="tongji">投票人数：{{ VOTE.votePeople }}， 总票数：{{ VOTE.voteCount }}</div>
     <div class="online">在线人数：{{ VOTE.onlineCount }}</div>
-    <button v-on:click="goVote()" v-if="VOTE.hasVoteDetail.length == 0">去投票</button>
+    <button v-on:click="goVote()" v-if="VOTE.hasVoteDetail.length == 0"></button>
   </div>
 </template>
 
