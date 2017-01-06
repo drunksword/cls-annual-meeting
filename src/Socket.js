@@ -12,8 +12,9 @@ const VOTE = {
   con: null,
   hasVoteDetail: [],
 
-  init: function () {
-    var home = true
+  init: function (con) {
+    this.con = con
+    var home = false
     if (home) {
       this.socket = io.connect('ws://192.168.3.3')
     } else {
@@ -25,6 +26,10 @@ const VOTE = {
 
     this.socket.emit('login', {UUID: window.localStorage.UUID})
 
+    this.socket.on('hasVote', function (obj) {
+      con.$store.state.voteProList = obj.uniqueVote
+    })
+
     this.socket.on('voteInfo', function (obj) {
       VOTE.votePeople = obj.votePeople
       // 动画效果
@@ -32,11 +37,6 @@ const VOTE = {
       VOTE.voteCount = 0
       for (var i = obj.voteDetail.length - 1; i >= 0; i--) {
         VOTE.voteCount += obj.voteDetail[i].num
-      }
-
-      if (obj.uniqueVote != null) {
-        VOTE.hasVoteDetail = obj.uniqueVote
-        console.log('已投数' + obj.uniqueVote.length)
       }
     })
 
@@ -53,13 +53,8 @@ const VOTE = {
       VOTE.onlineCount = obj.onlineCount
     })
 
-    this.socket.on('voteResult', function (obj) {
-      if (obj.succ === 0) {
-        CommonUtil.showToast(obj.message)
-        return
-      }
-      VOTE.con.$router.push({name: 'home'})
-      // VOTE.con.$store.commit('cleanVote') // 清空数组元素
+    this.socket.on('voteError', function (obj) {
+      CommonUtil.showToast(obj.message)
     })
   },
 
@@ -67,13 +62,8 @@ const VOTE = {
     this.socket.emit('getVoteInfo', null)
   },
 
-  vote: function (voteProList, con) {
-    this.con = con
-    this.socket.emit('vote', {voteProList: voteProList})
-  },
-
-  logout: function () {
-    this.socket.disconnect()
+  vote: function (proId) {
+    this.socket.emit('vote', {proId: proId})
   }
 }
 

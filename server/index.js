@@ -32,15 +32,16 @@ io.on('connection', function(socket){
 		//向所有客户端广播在线人数
 		io.emit('loginChange', {onlineCount: onlineCount});
 		console.log(obj.UUID+'进入了直播间');
+
+		if(!votePersonDetail.hasOwnProperty(socket.name)) {
+			votePersonDetail[socket.name] = [0, 0, 0, 0, 0]
+		}
+		var uniqueVote = votePersonDetail[socket.name]
+		socket.emit('hasVote', {uniqueVote: uniqueVote}); //回复已投票情况
 	});
 
 	socket.on('getVoteInfo', function(){
-		var uniqueVote = null;
-		if(votePersonDetail.hasOwnProperty(socket.name)) {//检查投票详情，如果投过票回复投票情况
-			uniqueVote = votePersonDetail[socket.name]
-		}
-		socket.emit('voteInfo', {voteDetail: voteDetail, onlineCount: onlineCount,
-		 votePeople: votePeople, uniqueVote: uniqueVote});
+		socket.emit('voteInfo', {voteDetail: voteDetail, onlineCount: onlineCount, votePeople: votePeople});
 	})
 
 	//监听用户退出
@@ -54,41 +55,28 @@ io.on('connection', function(socket){
 		console.log(socket.name+'退出了直播间');
 	})
 
-	//监听用户投票
+	//监听用户投票/取消投票
 	socket.on('vote', function(obj){
-		var voteProList = obj.voteProList
-		var message = '', succ = 0
-		var temp = votePersonDetail[socket.name]
-		if(voteProList.length > 3){
-			message = '您只能投最多3票。'
-		}else if(voteProList.length == 0){
-			if(!votePersonDetail.hasOwnProperty(socket.name)){
-				return // nothing happened
-			}
-			delete votePersonDetail[socket.name]
+		var proId = obj.proId
+		var voteArray = votePersonDetail[socket.name]
+		var voteCount = 0
+		for(var i=0;i<voteArray.length;i++){
+			voteCount += voteArray[i]
+		}
+		if(voteCount >= 3 && voteArray[proId-1] == 0){ // 投票数已达到3票,且仍要投票
+			socket.emit('voteError', {message: '您只能投最多3票。'})
+			return
+		}
+		if(voteCount == 1 && voteArray[proId-1] == 1){  // 仅投了一票且还要取消该票
 			votePeople--
-			succ = 1
-		}else {
-			if(!votePersonDetail.hasOwnProperty(socket.name)){
-				votePeople++
-			}
-			votePersonDetail[socket.name] = voteProList
-			succ = 1
 		}
-		socket.emit('voteResult', {message: message, succ: succ})
-		if(succ == 1){
-			for (var i = 0; i < voteProList.length; i++) {
-				voteDetail[voteProList[i] - 1].num++
-				console.log('节目票数：' + voteDetail[voteProList[i] - 1].num)
-			}
-			if(temp){ // 去掉以前的票数
-				for (var i = 0; i < temp.length; i++) {
-					voteDetail[temp[i] - 1].num--
-					console.log('节目票数：' + voteDetail[temp[i] - 1].num)
-				}
-			}
-			io.emit('voteChange', {votePeople: votePeople, voteDetail: voteDetail})
+		if(voteCount == 0){
+			votePeople++
 		}
+		voteArray[proId-1] = (voteArray[proId-1]+1)%2
+
+		voteDetail[proId-1].num += (votePersonDetail[socket.name][proId-1] == 1) ? 1: -1
+		io.emit('voteChange', {votePeople: votePeople, voteDetail: voteDetail})
 	})
 });
 

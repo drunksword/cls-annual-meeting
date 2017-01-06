@@ -19,6 +19,7 @@
     },
     created () {
       this.$store.commit('setPage', 'voteRlt')
+      window.localStorage.viewRule = 1
     },
     methods: {
       goVote () {

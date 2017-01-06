@@ -10,6 +10,11 @@ import VOTE from './Socket.js'
 
 export default {
   name: 'app',
+  data () {
+    return {
+      isWeixinBrowser: false
+    }
+  },
   created () {
     var uA = navigator.userAgent.toLowerCase()
     this.isWeixinBrowser = (/micromessenger/).test(uA)
@@ -17,16 +22,16 @@ export default {
       this.isWeixinBrowser = true
     }
     if (!this.isWeixinBrowser) {
-      this.$router.push({ path: 'unsupported' })
+      this.$router.push({ name: 'unsupported' })
+      return
+    }
+    if (typeof window.localStorage.viewRule === 'undefined' || window.localStorage.viewRule === 0) { // 只有没看过规则才跳到规则页
+      this.$router.push({ name: 'voteRule' })
       return
     }
     // 连接websocket及初始化
-    VOTE.init()
-  },
-  data () {
-    return {
-      isWeixinBrowser: false
-    }
+    var con = this
+    VOTE.init(con)
   },
   computed: {
     isHome () {
