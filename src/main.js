@@ -5,11 +5,19 @@ import App from './App'
 import store from './vuex/store'
 import VueRouter from 'vue-router'
 
+import '../static/css/barrager.css'
+import ChatInfo from './components/ChatInfo'
+import GroupInfo from './components/GroupInfo'
+import Login from './components/Login'
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
-    {path: '/', name: 'home', component: resolve => require(['./components/Home'], resolve)},
+    {path: '/', component: Login},
+    {path: '/chatInfo', component: ChatInfo},
+    {path: '/groupInfo', component: GroupInfo},
+    {path: '/voteHome', name: 'home', component: resolve => require(['./components/Home'], resolve)},
     {path: '/vote', name: 'vote', component: resolve => require(['./components/Vote'], resolve)},
     {path: '/voteRule', name: 'voteRule', component: resolve => require(['./components/VoteRule'], resolve)},
     {path: '/unsupported', name: 'unsupported', component: resolve => require(['./components/Unsupported'], resolve)}
@@ -19,12 +27,7 @@ const router = new VueRouter({
 const app = new Vue({
   router,
   store,
-  render: h => h(App),
-  methods: {
-    setTitle: function (newTitle) {
-      console.log('will change title to ' + newTitle)
-    }
-  }
+  render: h => h(App)
 })
 
 app.$mount('#app')

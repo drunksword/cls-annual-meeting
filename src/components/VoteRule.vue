@@ -30,8 +30,8 @@
 </script>
 
 <style scoped>
-  h2{background: url(../assets/icons.png) 134px -338px no-repeat; background-size: 323px 852px;height: 100px;margin: 0px 0px 20px 0px}
+  h2{background: url(../assets/icons.png) -41px -338px no-repeat; background-size: 323px 852px;height: 100px;width: 245px; margin: 0px auto 20px auto;}
   ul{list-style: none;font-weight:bold;margin: 0px 30px;}
   ul li{margin-bottom: 15px;line-height: 40px;}
-  button{background: url(../assets/icons.png) 145px -412px no-repeat; background-size: 300px 800px;height: 80px;width:100%;border:none;margin-top: 200px;}
+  button{background: url(../assets/icons.png) -23px -412px no-repeat; background-size: 300px 800px;height: 80px;width:245px;border:none;margin: 200px auto 0 auto;display: block;}
 </style>

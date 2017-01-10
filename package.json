@@ -1,8 +1,8 @@
 {
-  "name": "my-project",
+  "name": "nianhui",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "shitao",
+  "author": "shitao,caizhongdong",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -13,6 +13,9 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "eslint-plugin-html": "^1.7.0",
+    "eslint-plugin-vuefix": "^0.1.0",
+    "jquery": "^3.1.1",
     "vue": "^2.1.0",
     "vuex": "^2.0.0",
     "vue-router": "^2.1.1"

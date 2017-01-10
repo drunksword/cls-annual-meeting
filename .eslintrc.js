@@ -4,6 +4,11 @@ module.exports = {
   parserOptions: {
     sourceType: 'module'
   },
+  env:{
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   extends: 'standard',
   // required to lint *.vue files

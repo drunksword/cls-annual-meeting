@@ -18,11 +18,11 @@ export default {
   data () {
     return {
       state: this.$store.state,
-      programList: [{id: 1, name: '大变活人1', actor: 'xxx', img: require('../assets/logo.png')},
-                    {id: 2, name: '大变活人2', actor: 'xxx', img: require('../assets/logo.png')},
-                    {id: 3, name: '大变活人3', actor: 'xxx', img: require('../assets/logo.png')},
-                    {id: 4, name: '大变活人4', actor: 'xxx', img: require('../assets/logo.png')},
-                    {id: 5, name: '大变活人5', actor: 'xxx', img: require('../assets/logo.png')}]
+      programList: [{id: 1, name: '大变活人1', actor: 'xxx'},
+                    {id: 2, name: '大变活人2', actor: 'xxx'},
+                    {id: 3, name: '大变活人3', actor: 'xxx'},
+                    {id: 4, name: '大变活人4', actor: 'xxx'},
+                    {id: 5, name: '大变活人5', actor: 'xxx'}]
     }
   },
   created () {
