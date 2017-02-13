@@ -47,7 +47,7 @@ export default {
   }
   .head-wrapper{
     background-color: #34352c;
-    height: 50px;
+    height: 100px;
     flex-shrink: 0;
     display: flex;
     justify-content: space-between;
@@ -56,13 +56,13 @@ export default {
     display: flex;
     flex-shrink: 0;
     height: 100%;
-    width:70px;
-    min-width: 70px;
+    width:140px;
+    min-width: 140px;
     align-items: center;
     justify-content: space-around;
   }
   .head-wrapper .icon-keaide,.icon-tree{
-    font-size: 28px !important;
+    font-size: 56px !important;
     color: #fff;
   }
   .head-wrapper a {
@@ -79,11 +79,11 @@ export default {
     display: flex;
     align-items: center;
     height: 100%;
-    width: 50px;
+    width: 100px;
     justify-content: center;
   }
   .head-wrapper .icon-group{
-    font-size: 30px !important;
+    font-size: 60px !important;
     color: #fff;
   }
 </style>

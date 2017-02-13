@@ -1,5 +1,5 @@
 <template>
-	<div class="sys-wrap">
+	<div class="sys-wrap" style="zoom:2">
 		<div class="sys-msg">
 			{{msg}} 加入群聊
 		</div>

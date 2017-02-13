@@ -1,5 +1,5 @@
 <template>
-<div class="other-wrap">
+<div class="other-wrap" style="zoom:2">
   <img class="-header" :src="photo" />
   <span class="-name">{{name}}</span>
   <div class="-msg">{{msg}}</div>

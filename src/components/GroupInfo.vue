@@ -1,6 +1,6 @@
 <template>
-  <transition name="slide">
-    <div class="group-info-wrap">
+  <transition name="slide" >
+    <div class="group-info-wrap" style="zoom:2">
       <group-info-head></group-info-head>
       <group-info-body></group-info-body>
     </div>

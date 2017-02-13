@@ -47,7 +47,7 @@
 <style scoped>
 .body-wrapper{
   background-color: #f6f6f6;
-  height: calc(100% - 90px);
+  height: calc(100% - 180px);
   overflow-y: scroll;
   overflow-x: hidden;
   background: url(../assets/bj.jpg) no-repeat;

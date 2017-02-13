@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <h2 class="head" v-if="isWeixinBrowser">上海易积通电子商务有限公司<br>2016年会节目投票<div v-if="isHome">(本页面数据实时变化，无需刷新页面)</div></h2>
+    <!-- <h2 class="head" v-if="isWeixinBrowser">上海易积通电子商务有限公司<br>2016年会节目投票<div v-if="isHome">(本页面数据实时变化，无需刷新页面)</div></h2> -->
     <router-view v-if="showChat"></router-view>
   </div>
 </template>
 
 <script>
 import $ from 'jquery'
-import VOTE from './Socket.js'
+// import VOTE from './Socket.js'
 import CHAT from './api/Client'
 import {randomColor, genUid, randomPhoto} from './util/index'
 
@@ -102,15 +102,14 @@ export default {
       }
       CHAT.init('name')
     }
+    // if (typeof window.localStorage.viewRule === 'undefined' || window.localStorage.viewRule === 0) { // 只有没看过规则才跳到规则页
+    //   this.$router.push({ name: 'voteRule' })
+    //   return
+    // }
 
-    if (typeof window.localStorage.viewRule === 'undefined' || window.localStorage.viewRule === 0) { // 只有没看过规则才跳到规则页
-      this.$router.push({ name: 'voteRule' })
-      return
-    }
-
-    // 连接websocket及初始化
-    var con = this
-    VOTE.init(con)
+    // // 连接websocket及初始化
+    // var con = this
+    // VOTE.init(con)
   },
   computed: {
     isHome () {
@@ -121,9 +120,11 @@ export default {
 </script>
 
 <style>
-html{min-height: 100%;}
+html{height: 100%;}
+body{margin: 0;height: 100%;}
 /*body {margin: 0px;font-size: 32px;padding: 0 30px;background: url(./assets/bg.jpg) no-repeat;background-size: 100% 100%;}*/
 body *{max-height:999999px;}/*该行是为了消除 Font Boosting特性(字体增强，在手机上界面‘标签数’或‘文本数’大于某个值，就会触发) */
+#app{height: 100%}
 ul {list-style: none; margin: 0; padding: 0;}
 h2.head {text-align: center;color: #f43531;font-size: 35px;line-height: 40px; margin-top: 120px;font-weight: 900;}
 h2.head div{font-size: 25px;color:#999;margin-top: 5px;font-weight: normal;}

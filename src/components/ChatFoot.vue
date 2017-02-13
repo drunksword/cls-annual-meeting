@@ -32,22 +32,22 @@ export default {
 <style scoped>
   .foot-wrapper{
     background-color: #f1f1f1;
-    height: 40px;
+    height: 80px;
     flex-shrink: 0;
     display: flex;
-    padding: 5px 10px;
+    padding: 10px 20px;
     justify-content: space-between;
     border-top: solid 1px rgba(0,0,0,0.1);
   }
   .foot-wrapper .chat-input{
     height: 100%;
     width: 80%;
-    border-radius: 10px;
+    border-radius: 20px;
     outline: none;
     border:none;
     box-sizing: border-box;
-    padding: 5px;
-    font-size: 22px;
+    padding: 10px;
+    font-size: 44px;
     color: #333;
   }
   .foot-wrapper .chat-sub{
@@ -57,7 +57,7 @@ export default {
     align-items: center;
     height: 100%;
     width: 18%;
-    border-radius: 10px;
+    border-radius: 20px;
     outline: none;
   }
   /*.primary{*/

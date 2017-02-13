@@ -1,5 +1,5 @@
 <template>
-<div class="self-wrap">
+<div class="self-wrap" style="zoom:2">
   <img class="-header" :src="photo" />
   <!-- <span class="-name">超级厉害</span> -->
   <div class="-msg">{{msg}}</div>
