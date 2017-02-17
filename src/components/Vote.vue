@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <div class="dishBox">
       <program v-for="item in programList" :data="item">
     </div>

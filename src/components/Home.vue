@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="main">
+    <h2 class="head">上海易积通电子商务有限公司<br>2016年会节目投票<div>(本页面数据实时变化，无需刷新页面)</div></h2>
     <ul>
       <li class="bar-wrap">
         <label>开场童谣（表演者：邓鸣贺）</label>
@@ -25,7 +26,7 @@
     </ul>
     <div class="tongji">投票人数：{{ VOTE.votePeople }}， 总票数：{{ VOTE.voteCount }}</div>
     <div class="online">在线人数：{{ VOTE.onlineCount }}</div>
-    <button v-on:click="goVote()"></button>
+    <button v-on:click="goVote()">去投票</button><button v-on:click="goChat()">去聊天</button>
   </div>
 </template>
 
@@ -41,6 +42,7 @@ export default {
     }
   },
   created () {
+    VOTE.init(this)
     VOTE.getVoteInfo()
     this.$store.commit('setPage', 'home')
   },
@@ -50,16 +52,22 @@ export default {
   methods: {
     goVote () {
       this.$router.push({name: 'vote'})
+    },
+    goChat () {
+      this.$router.push({path: 'chatInfo'})
     }
   }
 }
 </script>
 
 <style scoped>
-ul{margin-top: 10px;}
+h2.head {text-align: center;color: #f43531;font-size: 35px;line-height: 40px; font-weight: 900;}
+h2.head div{font-size: 25px;color:#999;margin-top: 5px;font-weight: normal;}
+
+ul{padding-top: 10px;}
 div.tongji{text-align: center;margin-top: 60px;}
 .online{text-align: center;}
-button{background: url(../assets/icons.png) -51px -412px no-repeat; background-size: 300px 800px;height: 80px;width:202px;display: block;border:none;margin: 30px auto 60px auto;}
+button{background: url(../assets/icons.png) -51px -412px no-repeat; background-size: 300px 800px;height: 80px;width:202px;display: inline-block;width:50%;border:none;margin: 30px auto 60px auto;}
 div.online{color:gray;font-size: 25px;margin-top: 20px;}
 
 *, *:before, *:after {

@@ -2,6 +2,7 @@
   <div class="chat">
     <div class="head-wrapper">
       <div class="-left">
+        <router-link to="/voteHome" style="color:white">去投票</router-link>
       </div>
       <div class="-mid">
         <p class="group-name">易积通({{CHAT.onlineCount}})</p>
