@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import $ from 'jquery'
-// import VOTE from './Socket.js'
-import CHAT from './api/Client'
-import {randomColor, genUid, randomPhoto} from './util/index'
+// import $ from 'jquery'
+// import CHAT from './api/Client'
+// import {randomColor, genUid, randomPhoto} from './util/index'
+import config from './config.js'
 
 export default {
   name: 'app',
@@ -20,13 +20,14 @@ export default {
   },
   created () {
     var uA = navigator.userAgent.toLowerCase()
-    this.isWeixinBrowser = (/micromessenger/).test(uA) || this.$store.state.test === 1
+    this.isWeixinBrowser = (/micromessenger/).test(uA) || config.isTest
     if (!this.isWeixinBrowser) {
       this.$router.push({ name: 'unsupported' })
       return
     }
 
-    if ((window.navigator.appVersion.match(/iphone/gi) || window.navigator.appVersion.match(/ipad/gi) || window.navigator.appVersion.match(/android/gi)) && !window.navigator.appVersion.match(/windows/gi)) {
+    var isMobile = (window.navigator.appVersion.match(/iphone/gi) || window.navigator.appVersion.match(/ipad/gi) || window.navigator.appVersion.match(/android/gi)) && !window.navigator.appVersion.match(/windows/gi)
+    if (isMobile) {
       this.showChat = true
     } else {
       $('body').css('background-size', '100% 100%')

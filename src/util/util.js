@@ -71,10 +71,6 @@ function setTitle (title) {
 }
 
 // ---------------------方法/函数定义完毕，下面是导出public方法------------------------
-
-/**
- * 需要导出的public 的方法
- */
 module.exports = {
   showToast: showToast,
   setTitle: setTitle

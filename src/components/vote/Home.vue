@@ -26,7 +26,8 @@
     </ul>
     <div class="tongji">投票人数：{{ VOTE.votePeople }}， 总票数：{{ VOTE.voteCount }}</div>
     <div class="online">在线人数：{{ VOTE.onlineCount }}</div>
-    <button v-on:click="goVote()">去投票</button><button v-on:click="goChat()">去聊天</button>
+    <div class="btnContainer"><button v-on:click="goVote()">去投票</button></div>
+    <div class="btnContainer"><button v-on:click="goChat()">去聊天</button></div>
   </div>
 </template>
 
@@ -66,9 +67,9 @@ h2.head div{font-size: 25px;color:#999;margin-top: 5px;font-weight: normal;}
 
 ul{padding-top: 10px;}
 div.tongji{text-align: center;margin-top: 60px;}
-.online{text-align: center;}
-button{background: url(../assets/icons.png) -51px -412px no-repeat; background-size: 300px 800px;height: 80px;width:202px;display: inline-block;width:50%;border:none;margin: 30px auto 60px auto;}
-div.online{color:gray;font-size: 25px;margin-top: 20px;}
+div.online{color:gray;font-size: 25px;margin-top: 20px;text-align: center;}
+div.btnContainer{width: 49%;text-align: center;display: inline-block;}
+button{background: url(../assets/icons.png) -51px -412px no-repeat; background-size: 300px 800px;height: 80px;width:202px;border:none;margin: 30px auto 60px auto;font-size: 32px;color: white;font-weight: bold;}
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -85,8 +86,6 @@ li.bar-wrap label {
   display: block;
 }
 li.bar-wrap div.head{width: 70px;height: 97px;float: left;}
-/*li.bar-wrap div.head:before{content:'';display: block;background: url(../assets/icons.png) 236px -549px;background-size: 200px 500px; 
-width: 155px;height: 80px;transform: rotate(-90deg);position: relative;left: -38px;}*/
 li.bar-wrap div.bar {
   height: 50px;
   width: 0;
@@ -102,17 +101,6 @@ li.bar-wrap div.bar:after {
   line-height: 50px;
   color: #FFF;
 }
-/*li.bar-wrap div.bar:before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding-right: 10px;
-  line-height: 50px;
-  color: #FFF;
-  background: url(../assets/icons.png)
-}*/
 li.bar-wrap div.bar.blue {
   background-color: #61a7c4;
   border-bottom: 3px solid #4290b0;

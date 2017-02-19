@@ -14,7 +14,7 @@ const VOTE = {
 
   init: function (con) {
     this.con = con
-    var home = false
+    var home = true
     if (home) {
       this.socket = io.connect('ws://192.168.3.3')
     } else {

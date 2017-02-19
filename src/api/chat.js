@@ -68,8 +68,12 @@ const CHAT = {
 
     if (!this.userid) { return }
 
-    //  连接websocket后端服务器
-    this.socket = io.connect('ws://shitao.clschina.com')
+    var home = true
+    if (home) {
+      this.socket = io.connect('ws://192.168.3.3')
+    } else {
+      this.socket = io.connect('ws://shitao.clschina.com')
+    }
 
     //  告诉服务器端有用户登录
     this.socket.emit('Login', {userid: this.userid, username: this.username, color: this.color, weichat: this.weichat})
