@@ -5,13 +5,13 @@
  * 然后 CommonUtil.setTitle('要更改的页面标题') 这样引用即可
  */
 
-console.log('CommonUtil JS loaded')
+ console.log('CommonUtil JS loaded')
 
 /**
  * 显示提示信息；需要配合css里的 #toast .toastmessage一起使用
  */
-var timeoutCallback = ''
-function showToast (msg, ms) {
+ var timeoutCallback = ''
+ function showToast (msg, ms) {
   var ele = document.getElementById('toast')
   if (ele == null) {
     ele = document.createElement('div')
@@ -49,7 +49,7 @@ function closeToast () {
  /**
  * 更改页面标题
  */
-function setTitle (title) {
+ function setTitle (title) {
   var u = navigator.userAgent
   var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
   if (isiOS) {
@@ -70,8 +70,37 @@ function setTitle (title) {
   }
 }
 
+/**生成uuid*/
+function genUUid () {
+  function s4 () {
+    return Math.floor((1 + Math.random()) * 0x10000)
+    .toString(16).substring(1)
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+  s4() + '-' + s4() + s4() + s4()
+}
+
+/** 弹幕字体随机颜色*/
+function randomColor () {
+  var colors = ['#ff0000', '#ff00f0', '#0000ff', '#00ff00', '#fff000', '#fff']
+  return colors[parseInt(6 * Math.random())]
+}
+
+/** 弹幕用户随机头像*/
+function randomPhoto () {
+  var photos = ['./static/photo/cute.png', './static/photo/haha.png', './static/photo/heisenberg.png',
+  './static/photo/mj.png', './static/photo/ji.png', './static/photo/qwe.png',
+  './static/photo/niu.png', './static/photo/shu.png', './static/photo/yaseng.png',
+  './static/photo/1.png', './static/photo/2.png', './static/photo/3.png',
+  './static/photo/4.png', './static/photo/5.png', './static/photo/6.png', './static/photo/7.png']
+  return photos[parseInt(9 * Math.random())]
+}
+
 // ---------------------方法/函数定义完毕，下面是导出public方法------------------------
 module.exports = {
   showToast: showToast,
-  setTitle: setTitle
+  setTitle: setTitle,
+  randomColor: randomColor,
+  randomPhoto: randomPhoto,
+  genUUid: genUUid
 }

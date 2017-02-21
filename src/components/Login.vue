@@ -8,11 +8,11 @@
           易积通
         </div>
         <div class="-name">
-          <label>群昵称：</label>
+          <label>给自己起个酷酷的外号去指点江山吧：</label>
           <input type="text" v-model="name" placeholder="10字以内">
         </div>
         <div class="-login">
-          <span class="-btn" @click="login()">登录</span>
+          <span class="-btn" @click="login()">准备好了</span>
         </div>
       </div>
       <div class="foot">
@@ -22,44 +22,28 @@
 </template>
 
 <script>
-import CHAT from '../api/Client'
-import {randomColor, genUid, randomPhoto} from '../util/index'
+import CHAT from '../api/chat'
 export default {
   name: 'Login',
   data () {
     return {
-      name: '',
-      color: '',
-      weichat: ''
+      name: ''
     }
   },
-  created () {
-
-  },
   methods: {
-    send (msg) {
-      CHAT.submit(msg)
-      this.msg = ''
-      console.log(CHAT)
-    },
     login () {
-      if (!this.name.trim()) {
-        alert('昵称不能为空！')
-        return
-      }
       this.name = this.name.slice(0, 10)
       if (localStorage) {
-        localStorage.setItem('name', this.name)
-        localStorage.setItem('color', randomColor())
-        localStorage.setItem('weichat', this.weichat)
-        localStorage.setItem('userid', genUid())
-        localStorage.setItem('photo', randomPhoto())
+        localStorage.setItem('name', this.name || '编号' + parseInt(1000 * Math.random()))
+        localStorage.setItem('color', util.randomColor())
+        localStorage.setItem('weichat', '')
+        localStorage.setItem('userid', util.genUUid())
+        localStorage.setItem('photo', util.randomPhoto())
       }
       CHAT.init(this.name)
       this.$router.push('/chatInfo')
     }
   }
-
 }
 </script>
 
@@ -98,8 +82,6 @@ export default {
   }
   .login-wrapper .body .-name,
   .login-wrapper .body .-weichat {
-    /*background-color: #eee;*/
-
     display: flex;
     height: 80px;
     justify-content: center;
@@ -172,5 +154,4 @@ export default {
   .loginslide-enter {
     transform: translate(0%, 0);
   }
-
 </style>

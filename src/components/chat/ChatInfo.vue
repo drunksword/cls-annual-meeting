@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import CHAT from '../api/Client'
-import ChatBody from '../components/ChatBody'
-import ChatFoot from '../components/ChatFoot'
-//  import GroupInfo from '../components/GroupInfo'
+import CHAT from '../../api/chat'
+import ChatBody from './ChatBody'
+import ChatFoot from './ChatFoot'
+
 export default {
   name: 'ChatHead',
   data () {

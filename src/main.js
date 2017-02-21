@@ -1,14 +1,12 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
 import store from './vuex/store'
 import VueRouter from 'vue-router'
 
 import '../static/css/barrager.css'
+import Login from './components/Login'
 import ChatInfo from './components/ChatInfo'
 import GroupInfo from './components/GroupInfo'
-import Login from './components/Login'
 
 Vue.use(VueRouter)
 
@@ -16,6 +14,7 @@ const router = new VueRouter({
   routes: [
     {path: '/', component: Login},
     {path: '/chatInfo', component: ChatInfo},
+    {path: '/screen', name : 'screen', component: Screen},
     {path: '/groupInfo', component: GroupInfo},
     {path: '/voteHome', name: 'home', component: resolve => require(['./components/Home'], resolve)},
     {path: '/vote', name: 'vote', component: resolve => require(['./components/Vote'], resolve)},

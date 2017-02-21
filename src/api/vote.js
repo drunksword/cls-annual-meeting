@@ -67,16 +67,6 @@ const VOTE = {
   }
 }
 
-// 生成uuid
-function guid () {
-  function s4 () {
-    return Math.floor((1 + Math.random()) * 0x10000)
-    .toString(16).substring(1)
-  }
-  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-    s4() + '-' + s4() + s4() + s4()
-}
-
 // 投票柱形图的动画效果
 function countUp (startVal, endValList, duration, voteCount) {
   var startTime = 0
