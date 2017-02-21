@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import VOTE from '../Socket.js'
+import VOTE from '../../api/vote.js'
 
 export default {
   name: 'home',
@@ -69,7 +69,7 @@ ul{padding-top: 10px;}
 div.tongji{text-align: center;margin-top: 60px;}
 div.online{color:gray;font-size: 25px;margin-top: 20px;text-align: center;}
 div.btnContainer{width: 49%;text-align: center;display: inline-block;}
-button{background: url(../assets/icons.png) -51px -412px no-repeat; background-size: 300px 800px;height: 80px;width:202px;border:none;margin: 30px auto 60px auto;font-size: 32px;color: white;font-weight: bold;}
+button{background: url(../../assets/icons.png) -51px -412px no-repeat; background-size: 300px 800px;height: 80px;width:202px;border:none;margin: 30px auto 60px auto;font-size: 32px;color: white;font-weight: bold;}
 
 *, *:before, *:after {
   box-sizing: border-box;

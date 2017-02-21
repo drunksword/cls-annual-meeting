@@ -47,5 +47,5 @@ export default {
 <style scoped>
 .main{padding: 120px 30px 0px 30px;}
 .dishBox {margin: 0px 30px;}
-button{background: url(../assets/icons.png) -54px -238px no-repeat; background-size: 300px 800px;height: 80px;width:202px;display: block;margin: auto; border:none;margin-bottom: 60px;}
+button{background: url(../../assets/icons.png) -54px -238px no-repeat; background-size: 300px 800px;height: 80px;width:202px;display: block;margin: auto; border:none;margin-bottom: 60px;}
 </style>

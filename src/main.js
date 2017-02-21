@@ -3,23 +3,23 @@ import App from './App'
 import store from './vuex/store'
 import VueRouter from 'vue-router'
 
-import '../static/css/barrager.css'
+import './assets/css/barrager.css'
 import Login from './components/Login'
-import ChatInfo from './components/ChatInfo'
-import GroupInfo from './components/GroupInfo'
+import ChatInfo from './components/chat/ChatInfo'
+import GroupInfo from './components/chat/GroupInfo'
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
-    {path: '/', component: Login},
-    {path: '/chatInfo', component: ChatInfo},
-    {path: '/screen', name : 'screen', component: Screen},
-    {path: '/groupInfo', component: GroupInfo},
-    {path: '/voteHome', name: 'home', component: resolve => require(['./components/Home'], resolve)},
-    {path: '/vote', name: 'vote', component: resolve => require(['./components/Vote'], resolve)},
-    {path: '/voteRule', name: 'voteRule', component: resolve => require(['./components/VoteRule'], resolve)},
-    {path: '/unsupported', name: 'unsupported', component: resolve => require(['./components/Unsupported'], resolve)}
+  {path: '/', component: Login},
+  {path: '/chatInfo', component: ChatInfo},
+  {path: '/screen', name : 'screen', component: Screen},
+  {path: '/groupInfo', component: GroupInfo},
+  {path: '/voteHome', name: 'home', component: resolve => require(['./components/vote/Home'], resolve)},
+  {path: '/vote', name: 'vote', component: resolve => require(['./components/vote/Vote'], resolve)},
+  {path: '/voteRule', name: 'voteRule', component: resolve => require(['./components/vote/VoteRule'], resolve)},
+  {path: '/unsupported', name: 'unsupported', component: resolve => require(['./components/Unsupported'], resolve)}
   ]
 })
 /* eslint-disable no-new */

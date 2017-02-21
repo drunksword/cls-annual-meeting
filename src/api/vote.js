@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
-import CommonUtil from './CommonUtil.js'
+import CommonUtil from '../util/util.js'
 
 console.log('Socket JS loaded')
 

@@ -11,7 +11,7 @@
 </div>
 </template>
 <script>
-import CHAT from '../api/Client'
+import CHAT from '../../api/chat'
 import DialogUtil from './util/DialogUtil'
 export default{
   name: 'GroupInfoHead',

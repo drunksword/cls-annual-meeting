@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import CHAT from '../api/Client'
+import CHAT from '../../api/chat'
 export default {
   name: 'ChatFoot',
   data () {

@@ -18,7 +18,7 @@
   import OtherMsg from './OtherMsg'
   import SelfMsg from './SelfMsg'
   import SystemMsg from './SystemMsg'
-  import CHAT from '../api/Client'
+  import CHAT from '../../api/chat'
 
   export default {
     name: 'ChatBody',
@@ -50,7 +50,7 @@
   height: calc(100% - 180px);
   overflow-y: scroll;
   overflow-x: hidden;
-  background: url(../assets/bj.jpg) no-repeat;
+  background: url(../../assets/bg_chat.jpg) no-repeat;
   background-size: 100%;
 }
 </style>

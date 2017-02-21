@@ -60,15 +60,15 @@
 
 </template>
 <script>
-import CHAT from '../api/Client'
+import CHAT from '../../api/chat'
 import DialogUtil from './util/DialogUtil'
-import {randomPhoto} from '../util/index'
+import util from '../../util/util'
 export default{
   name: 'GroupInfoBody',
   data () {
     return {
       CHAT: CHAT,
-      photo: localStorage.getItem('photo') || './static/photo/cute.png',
+      photo: localStorage.getItem('photo') || '../../assets/avatar/cute.png',
       name: 'redream',
       weichat: 'redream',
       isShow: false,
@@ -98,7 +98,7 @@ export default{
   },
   methods: {
     changePhoto () {
-      this.photo = randomPhoto()
+      this.photo = util.randomPhoto()
       localStorage.setItem('photo', this.photo)
     },
     save () {

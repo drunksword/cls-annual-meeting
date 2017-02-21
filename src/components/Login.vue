@@ -5,10 +5,10 @@
       </div>
       <div class="body">
         <div class="-title">
-          易积通
+          给自己起个酷酷的外号去指点江山吧：
         </div>
         <div class="-name">
-          <label>给自己起个酷酷的外号去指点江山吧：</label>
+          <label>我的代号</label>
           <input type="text" v-model="name" placeholder="10字以内">
         </div>
         <div class="-login">
@@ -23,6 +23,8 @@
 
 <script>
 import CHAT from '../api/chat'
+import util from '../util/util'
+
 export default {
   name: 'Login',
   data () {
