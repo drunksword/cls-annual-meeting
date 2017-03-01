@@ -38,6 +38,7 @@ export default {
     padding: 10px 20px;
     justify-content: space-between;
     border-top: solid 1px rgba(0,0,0,0.1);
+    font-size: 32px;
   }
   .foot-wrapper .chat-input{
     height: 100%;

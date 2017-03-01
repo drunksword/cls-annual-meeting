@@ -88,11 +88,11 @@ function randomColor () {
 
 /** 弹幕用户随机头像*/
 function randomPhoto () {
-  var photos = ['./static/photo/cute.png', './static/photo/haha.png', './static/photo/heisenberg.png',
-  './static/photo/mj.png', './static/photo/ji.png', './static/photo/qwe.png',
-  './static/photo/niu.png', './static/photo/shu.png', './static/photo/yaseng.png',
-  './static/photo/1.png', './static/photo/2.png', './static/photo/3.png',
-  './static/photo/4.png', './static/photo/5.png', './static/photo/6.png', './static/photo/7.png']
+  var photos = ['./static/avatar/cute.png', './static/avatar/haha.png', './static/avatar/heisenberg.png',
+  './static/avatar/mj.png', './static/avatar/ji.png', './static/avatar/qwe.png',
+  './static/avatar/niu.png', './static/avatar/shu.png', './static/avatar/yaseng.png',
+  './static/avatar/1.png', './static/avatar/2.png', './static/avatar/3.png',
+  './static/avatar/4.png', './static/avatar/5.png', './static/avatar/6.png', './static/avatar/7.png']
   return photos[parseInt(9 * Math.random())]
 }
 

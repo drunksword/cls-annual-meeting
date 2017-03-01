@@ -8,11 +8,13 @@
           给自己起个酷酷的外号去指点江山吧：
         </div>
         <div class="-name">
-          <label>我的代号</label>
           <input type="text" v-model="name" placeholder="10字以内">
         </div>
         <div class="-login">
           <span class="-btn" @click="login()">准备好了</span>
+        </div>
+        <div class="-login">
+          <span class="-btn default" @click="login()">我懒得起名</span>
         </div>
       </div>
       <div class="foot">
@@ -38,7 +40,6 @@ export default {
       if (localStorage) {
         localStorage.setItem('name', this.name || '编号' + parseInt(1000 * Math.random()))
         localStorage.setItem('color', util.randomColor())
-        localStorage.setItem('weichat', '')
         localStorage.setItem('userid', util.genUUid())
         localStorage.setItem('photo', util.randomPhoto())
       }
@@ -81,6 +82,7 @@ export default {
     align-items: center;
     font-weight: bolder;
     color: #999;
+    text-align: justify;
   }
   .login-wrapper .body .-name,
   .login-wrapper .body .-weichat {
@@ -91,6 +93,7 @@ export default {
     font-size: 32px;
     color: #999;
     border-top: solid 1px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
   }
   .login-wrapper .body .-name lable,
   .login-wrapper .body .-weichat lable {
@@ -99,18 +102,19 @@ export default {
   .login-wrapper .body .-name input,
   .login-wrapper .body .-weichat input {
     box-sizing: border-box;
-    height: 50px;
+    height: 60px;
     border: none;
     outline: none;
     padding: 10px;
     color: #666;
-    background-color: rgba(0, 0, 0, 0.02);
+    background-color: rgba(0, 0, 0, 0.05);
     font-size: 36px;
-    line-height: 50px;
+    line-height: 60px;
+    width: 100%;
   }
   .login-wrapper .body .-login {
     display: flex;
-    height: 160px;
+    height: 130px;
     align-items: center;
     font-size: 32px;
     color: #999;
@@ -121,11 +125,18 @@ export default {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 80px;
+    height: 70px;
     margin: 20px 15px;
     color: #fff;
     font-weight: bolder;
+    border-radius: 10px;
   }
+    .login-wrapper .body .-login .default{
+      background-color: white;
+      color: #3CAF36;
+      border: 1px solid #3CAF36;
+      margin-top: -10px;
+    }
   .login-wrapper .foot {
     /*position: absolute;
       bottom: 0;*/

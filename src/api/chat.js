@@ -50,9 +50,8 @@ const CHAT = {
     this.userid = localStorage.getItem('userid')
     this.username = localStorage.getItem('name')
     this.color = localStorage.getItem('color')
-    this.weichat = localStorage.getItem('weichat')
     this.photo = localStorage.getItem('photo')
-    this.socket.emit('changeInfo', {userid: this.userid, username: this.username, color: this.color, weichat: this.weichat, photo: this.photo})
+    this.socket.emit('changeInfo', {userid: this.userid, username: this.username, color: this.color, photo: this.photo})
   },
   init: function () {
     /*
@@ -63,7 +62,6 @@ const CHAT = {
     this.userid = localStorage.getItem('userid')
     this.username = localStorage.getItem('name')
     this.color = localStorage.getItem('color')
-    this.weichat = localStorage.getItem('weichat')
     this.photo = localStorage.getItem('photo')
 
     if (!this.userid) { return }
@@ -76,7 +74,7 @@ const CHAT = {
     }
 
     //  告诉服务器端有用户登录
-    this.socket.emit('Login', {userid: this.userid, username: this.username, color: this.color, weichat: this.weichat})
+    this.socket.emit('Login', {userid: this.userid, username: this.username, color: this.color})
     //  心跳包，30s左右无数据浏览器会断开连接Heartbeat
     setInterval(() => {
       this.socket.emit('heartbeat', 1)

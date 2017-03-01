@@ -2,7 +2,7 @@
   <div class="chat">
     <div class="head-wrapper">
       <div class="-left">
-        <router-link to="/voteHome" style="color:white">去投票</router-link>
+        <router-link to="/voteHome" style="color:white;">去投票</router-link>
       </div>
       <div class="-mid">
         <p class="group-name">易积通({{CHAT.onlineCount}})</p>
@@ -52,6 +52,7 @@ export default {
     flex-shrink: 0;
     display: flex;
     justify-content: space-between;
+    font-size: 32px;
   }
   .head-wrapper .-left{
     display: flex;
@@ -86,5 +87,8 @@ export default {
   .head-wrapper .icon-group{
     font-size: 60px !important;
     color: #fff;
+  }
+  .icon-group:before {
+    content: '\e600';
   }
 </style>
