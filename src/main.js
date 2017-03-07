@@ -14,8 +14,9 @@ const router = new VueRouter({
   routes: [
   {path: '/', component: Login},
   {path: '/chatInfo', component: ChatInfo},
-  {path: '/screen', name : 'screen', component: Screen},
   {path: '/groupInfo', component: GroupInfo},
+  {path: '/danmu', name : 'danmu', component: resolve => require(['./components/chat/Danmu'], resolve)},
+  {path: '/rank', name : 'rank', component: resolve => require(['./components/chat/Rank'], resolve)},
   {path: '/voteHome', name: 'home', component: resolve => require(['./components/vote/Home'], resolve)},
   {path: '/vote', name: 'vote', component: resolve => require(['./components/vote/Vote'], resolve)},
   {path: '/voteRule', name: 'voteRule', component: resolve => require(['./components/vote/VoteRule'], resolve)},

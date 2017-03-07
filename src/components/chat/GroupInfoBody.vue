@@ -1,17 +1,6 @@
 <template>
 <div class="group-info-body-wrap">
 	<div class="-bar"></div>
-	<!--<div class="-members" >-->
-		<!--<div class="-member" v-for="userObj in CHAT.onlineUsers" @click="showWeiChat(userObj)">-->
-      <!--<img class="-header" :src="userObj.photo" />-->
-			<!--<span class="-name">-->
-				<!--{{userObj.username.slice(0,4)}}-->
-			<!--</span>-->
-		<!--</div>-->
-		<!--&lt;!&ndash; 占位 &ndash;&gt;-->
-		<!--<div class="-member" v-for="i in 9">-->
-		<!--</div>-->
-	<!--</div>-->
 	<div class="-bar"></div>
 	<div class="-self">
 		<div class="-title">
@@ -23,6 +12,7 @@
 			<span class="-modify" @click="show()">修改</span>
 		</div>
 		<div class="-notice">
+      你可以随意修改头像和昵称
 		</div>
 	</div>
 	<div class="-bar"></div>

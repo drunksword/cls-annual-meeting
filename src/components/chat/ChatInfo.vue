@@ -2,7 +2,10 @@
   <div class="chat">
     <div class="head-wrapper">
       <div class="-left">
-        <router-link to="/voteHome" style="color:white;">去投票</router-link>
+        <router-link to="/voteHome" style="color:white;">
+          <div class="voteText">去投票</div>
+          <i class="iconfont icon-vote"></i>
+        </router-link>
       </div>
       <div class="-mid">
         <p class="group-name">易积通({{CHAT.onlineCount}})</p>
@@ -58,14 +61,16 @@ export default {
     display: flex;
     flex-shrink: 0;
     height: 100%;
-    width:140px;
+    width:170px;
     min-width: 140px;
     align-items: center;
     justify-content: space-around;
   }
-  .head-wrapper .icon-keaide,.icon-tree{
-    font-size: 56px !important;
-    color: #fff;
+  .head-wrapper .-left div.voteText{
+    display: inline;
+    vertical-align: super;
+    margin-left: 5px;
+    margin-right: -5px;
   }
   .head-wrapper a {
     text-decoration: none;
@@ -82,13 +87,11 @@ export default {
     align-items: center;
     height: 100%;
     width: 100px;
+    margin-left: 70px;
     justify-content: center;
   }
-  .head-wrapper .icon-group{
+  .head-wrapper .icon-group, .icon-vote{
     font-size: 60px !important;
     color: #fff;
-  }
-  .icon-group:before {
-    content: '\e600';
   }
 </style>

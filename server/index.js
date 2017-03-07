@@ -118,13 +118,13 @@ io.on('connection', function(socket){
 		}
 	});
 
-	//监听用户发布聊天内容
+	//监听更改信息
 	socket.on('changeInfo', function(obj){
 		//向所有客户端广播发布的消息
 		io.emit('changeInfo', obj);
 		console.log(obj.username+'更改了信息');
 	});
-	//监听更改信息
+	//监听用户发布聊天内容
 	socket.on('message', function(obj){
 		//向所有客户端广播发布的消息
 		io.emit('message', obj);

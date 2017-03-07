@@ -13,7 +13,7 @@ export default {
   created () {
     var isMobile = (window.navigator.appVersion.match(/iphone/gi) || window.navigator.appVersion.match(/ipad/gi) || window.navigator.appVersion.match(/android/gi)) && !window.navigator.appVersion.match(/windows/gi)
     if (!isMobile) {
-      this.$router.push({ name: 'screen' })
+      this.$router.push({ name: 'danmu' })
     }
 
     var uA = navigator.userAgent.toLowerCase()

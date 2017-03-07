@@ -6,7 +6,7 @@
   <div class="-mid">
     <p class="group-name">易积通({{CHAT.onlineCount}})</p>
   </div>
-  <div class="-right" @click="open()" >
+  <div class="-right">
   </div>
 </div>
 </template>
@@ -28,9 +28,6 @@ export default{
     DialogUtil
   },
   methods: {
-    open () {
-      this.isShare = true
-    },
     close () {
       this.isShare = false
     }
@@ -78,17 +75,4 @@ export default{
     width: 50px;
     justify-content: center;
   }
-  .group-info-head-wrap .-right .icon-share {
-    font-size: 28px !important;
-    color: #fff;
-  }
-  .share {
-    width: 80%;
-    padding: 20px;
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
 </style>

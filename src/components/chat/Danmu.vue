@@ -1,6 +1,33 @@
+<template>
+  <ul>
+    <li class="bar-wrap">
+      <div class="barBox"><div class="bar green" v-bind:data-percentage="voteCount[0].num + '票'" v-bind:style="{ height: voteCount[0].num + '%' }"></div></div>
+      <label>开场童谣 <div class="actors">表演者：邓鸣贺</div></label>
+    </li>
+    <li class="bar-wrap">
+      <div class="barBox"><div class="bar red" v-bind:data-percentage="voteCount[1].num + '票'" v-bind:style="{ height: voteCount[1].num + '%' }"></div></div>
+      <label>小拜年<div class="actors">表演者：胡海泉家、陈羽凡、白百何夫妇</div></label>
+    </li>
+    <li class="bar-wrap">
+      <div class="barBox"><div class="bar blue" v-bind:data-percentage="voteCount[2].num + '票'" v-bind:style="{ height: voteCount[2].num  + '%'}"></div></div>
+      <label>小品《今天的幸福》<div class="actors">表演者：沈腾、黄杨、艾伦</div></label>
+    </li>
+    <li class="bar-wrap">
+      <div class="barBox"><div class="bar purple" v-bind:data-percentage="voteCount[3].num + '票'" v-bind:style="{ height: voteCount[3].num  + '%'}"></div></div>
+      <label>《魔术》 <div class="actors">表演者：刘谦</div></label>
+    </li>
+    <li class="bar-wrap">
+      <div class="barBox"><div class="bar gray" v-bind:data-percentage="voteCount[4].num + '票'" v-bind:style="{ height: voteCount[4].num  + '%'}"></div></div>
+      <label>相声《奋斗》 <div class="actors">表演者：曹云金、刘云天</div></label>
+    </li>
+  </ul>
+</template>
+
 <script>
   import $ from 'jquery'
-  import CHAT from '../api/Client'
+  import CHAT from '../../api/chat'
+  import VOTE from '../../api/vote.js'
+  import {randomColor, genUUid, randomPhoto} from '../../util/util' 
 
   export default {
     name: 'Danmu',
@@ -8,14 +35,18 @@
       return {
         CHAT,
         msg: '',
-        showButton: false
+        showButton: false,
+        voteCount: VOTE.voteDetail
       }
     },
     created () {
-      if ((window.navigator.appVersion.match(/iphone/gi) || window.navigator.appVersion.match(/ipad/gi) || window.navigator.appVersion.match(/android/gi)) && !window.navigator.appVersion.match(/windows/gi)) {
-        $('body').css('background-size', '100% 100%')
-        $('body').css('background-image', 'url(/static/img/beijingsj1.jpg)')
-      }
+      var bg = require('../../assets/bg_screen.jpg')
+      $('body').css('background-size', '100% 100%')
+      $('body').css('background-image', 'url(' + bg+ ')')
+
+      VOTE.init(this)
+    VOTE.getVoteInfo()
+
       $.fn.barrager = function (barrage) {
         barrage = $.extend({
           close: true,
@@ -74,15 +105,10 @@
         $('.barrage').remove()
       }
       if (window.localStorage) {
-        console.log('浏览支持localStorage')
-      } else {
-        console.log('浏览暂不支持localStorage')
-      }
-      if (window.localStorage) {
         window.localStorage.setItem('name', '弹幕')
-        window.localStorage.setItem('userid', CHAT.genUid())
-        window.localStorage.setItem('color', CHAT.randomColor())
-        window.localStorage.setItem('photo', CHAT.randomPhoto())
+        window.localStorage.setItem('userid', genUUid())
+        window.localStorage.setItem('color', randomColor())
+        window.localStorage.setItem('photo', randomPhoto())
       }
       CHAT.init('name')
     }
@@ -90,43 +116,55 @@
 </script>
 
 <style scoped>
-  .hello{
-    bottom: 20px;
-    height: 76px;
-    border-radius: 4px;
-    border: 20px solid transparent;
-    overflow: hidden;
+  *, *:before, *:after {
     box-sizing: border-box;
-    position: fixed;
-    width: 100%;
   }
-  .hello .msg{
-    width: 80%;
-    height: 36px;
-    float: left;
-    overflow: hidden;
-    background-color: #fff;
+  ul{padding: 50px 0px 0px 0px;margin:0 80px;height: 100%;}
+  ul li{width:20%;float: left;height: 100%;}
+  ul li div.barBox{height: 80%;width: 80px;margin:auto;position: relative;}
+  ul li div.bar{position: absolute;bottom: 0px;width: 100%;}
+  li.bar-wrap label {
+    height: 20%;
+    font-size: 24px;
+    color: #333;
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 10px;
+    padding-top: 15px;
   }
-  .hello .msg input{
-    width: 100%;
-    font-size: 22px;
-    border: none;
-    color: #999;
-    -webkit-appearance: none;
-    vertical-align: middle;
-    height: 36px;
-    box-shadow: none;
-    float: left;
-    margin-top: -1px;
-  }
-  .hello .button{
-    height: 36px;
-    width: 20%;
-    float: right;
+  li.bar-wrap label .actors{
     font-size: 20px;
-    line-height: 36px;
-    color: #fff;
-    background-color: #ff9c00;
-    border: none;
+    line-height: 24px;
+    margin-top: 8px;
+    color: #666;
+  }
+  li.bar-wrap div.head{width: 70px;height: 97px;float: left;}
+  li.bar-wrap div.bar:after {
+    content: attr(data-percentage);
+    display: block;
+    text-align: center;
+    line-height: 40px;
+    color: #FFF;
+  }
+  li.bar-wrap div.bar.blue {
+    background-color: #61a7c4;
+    border-top: 3px solid #4290b0;
+  }
+  li.bar-wrap div.bar.green {
+    background-color: #61c471;
+    border-top: 3px solid #42b054;
+  }
+  li.bar-wrap div.bar.red {
+    background-color: #c46161;
+    border-top: 3px solid #b04242;
+  }
+  li.bar-wrap div.bar.purple {
+    background-color: #a461c4;
+    border-top: 3px solid #8d42b0;
+  }
+  li.bar-wrap div.bar.gray {
+    background-color: rgb(147,147,147);
+    border-top: 3px solid rgb(100,100,100);
   }
 </style>

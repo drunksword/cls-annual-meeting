@@ -72,7 +72,7 @@ export default {
   .login-wrapper .body {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 30px;
   }
   .login-wrapper .body .-title {
     height: 160px;
@@ -126,7 +126,7 @@ export default {
     align-items: center;
     width: 100%;
     height: 70px;
-    margin: 20px 15px;
+    margin: 20px 0px;
     color: #fff;
     font-weight: bolder;
     border-radius: 10px;
@@ -138,11 +138,6 @@ export default {
       margin-top: -10px;
     }
   .login-wrapper .foot {
-    /*position: absolute;
-      bottom: 0;*/
-
-    /*background-color: #098;*/
-
     height: 80px;
     width: 100%;
     display: flex;
