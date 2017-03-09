@@ -37,13 +37,13 @@ export default {
   methods: {
     login () {
       this.name = this.name.slice(0, 10)
-      if (localStorage) {
-        localStorage.setItem('name', this.name || '编号' + parseInt(1000 * Math.random()))
-        localStorage.setItem('color', util.randomColor())
-        localStorage.setItem('userid', util.genUUid())
-        localStorage.setItem('photo', util.randomPhoto())
-      }
-      CHAT.init(this.name)
+
+      localStorage.setItem('name', this.name || '编号' + parseInt(1000 * Math.random()))
+      localStorage.setItem('color', util.randomColor())
+      localStorage.setItem('UUID', util.genUUid())
+      localStorage.setItem('photo', util.randomPhoto())
+      
+      CHAT.init()
       this.$router.push('/chatInfo')
     }
   }

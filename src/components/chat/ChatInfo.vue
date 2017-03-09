@@ -61,7 +61,7 @@ export default {
     display: flex;
     flex-shrink: 0;
     height: 100%;
-    width:170px;
+    width:172px;
     min-width: 140px;
     align-items: center;
     justify-content: space-around;

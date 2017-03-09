@@ -12,7 +12,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
-  {path: '/', component: Login},
+  {path: '/login', component: Login},
   {path: '/chatInfo', component: ChatInfo},
   {path: '/groupInfo', component: GroupInfo},
   {path: '/danmu', name : 'danmu', component: resolve => require(['./components/chat/Danmu'], resolve)},

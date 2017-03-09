@@ -7,6 +7,7 @@
 <script>
 import config from './config.js'
 import util from './util/util.js'
+import CHAT from './api/chat.js'
 
 export default {
   name: 'app',
@@ -14,6 +15,7 @@ export default {
     var isMobile = (window.navigator.appVersion.match(/iphone/gi) || window.navigator.appVersion.match(/ipad/gi) || window.navigator.appVersion.match(/android/gi)) && !window.navigator.appVersion.match(/windows/gi)
     if (!isMobile) {
       this.$router.push({ name: 'danmu' })
+      return
     }
 
     var uA = navigator.userAgent.toLowerCase()
@@ -21,6 +23,13 @@ export default {
     if (!isWeixinBrowser) {
       this.$router.push({ name: 'unsupported' })
       return
+    }
+
+    if(localStorage.getItem('hasLogined')){
+      CHAT.init()
+      this.$router.push('/chatInfo')
+    }else{
+      this.$router.push('/login')
     }
     // if (typeof window.localStorage.viewRule === 'undefined' || window.localStorage.viewRule === 0) { // 只有没看过规则才跳到规则页
     //   this.$router.push({ name: 'voteRule' })

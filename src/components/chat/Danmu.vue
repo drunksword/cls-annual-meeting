@@ -45,7 +45,7 @@
       $('body').css('background-image', 'url(' + bg+ ')')
 
       VOTE.init(this)
-    VOTE.getVoteInfo()
+      VOTE.getVoteInfo()
 
       $.fn.barrager = function (barrage) {
         barrage = $.extend({
@@ -106,11 +106,11 @@
       }
       if (window.localStorage) {
         window.localStorage.setItem('name', '弹幕')
-        window.localStorage.setItem('userid', genUUid())
+        window.localStorage.setItem('UUID', genUUid())
         window.localStorage.setItem('color', randomColor())
         window.localStorage.setItem('photo', randomPhoto())
       }
-      CHAT.init('name')
+      CHAT.init()
     }
   }
 </script>

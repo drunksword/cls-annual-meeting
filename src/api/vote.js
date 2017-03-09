@@ -1,8 +1,7 @@
 import io from 'socket.io-client'
 import CommonUtil from '../util/util.js'
 
-console.log('Socket JS loaded')
-
+const {nodeServer} = require('../config.js')
 const VOTE = {
   voteCount: 0,
   votePeople: 0,
@@ -14,17 +13,12 @@ const VOTE = {
 
   init: function (con) {
     this.con = con
-    var home = true
-    if (home) {
-      this.socket = io.connect('ws://192.168.3.3')
-    } else {
-      this.socket = io.connect('ws://shitao.clschina.com')
-    }
-    if (!window.localStorage.UUID) {
-      window.localStorage.UUID = guid()
-    }
+    this.socket = io.connect('ws://' + nodeServer)
+    // if (!window.localStorage.UUID) {
+    //   window.localStorage.UUID = guid()
+    // }
 
-    this.socket.emit('login', {UUID: window.localStorage.UUID})
+    this.socket.emit('login', {UUID: localStorage.UUID})
 
     this.socket.on('hasVote', function (obj) {
       con.$store.state.voteProList = obj.uniqueVote

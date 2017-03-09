@@ -45,10 +45,6 @@ export default {
   created () {
     VOTE.init(this)
     VOTE.getVoteInfo()
-    this.$store.commit('setPage', 'home')
-  },
-  destroyed () {
-    // VOTE.logout()
   },
   methods: {
     goVote () {
