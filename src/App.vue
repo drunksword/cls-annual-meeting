@@ -56,5 +56,5 @@ ul {list-style: none; margin: 0; padding: 0;}
 .toastmessage{text-align:center; padding:50px 30px; transition: opacity 2s; }
 
 /* 副页面背景 */
-.main {min-height:100%;margin: 0px;font-size: 32px;padding: 60px 30px 0 30px;background: url(./assets/bg.jpg) no-repeat;background-size: 100% 100%;}
+.main {min-height:100%;margin: 0px;font-size: 32px;padding: 0 30px;background: url(./assets/bg.jpg) no-repeat;background-size: 100% 100%;}
 </style>

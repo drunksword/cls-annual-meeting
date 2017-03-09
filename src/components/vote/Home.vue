@@ -1,6 +1,8 @@
 <template>
   <div class="main">
-    <h2 class="head">上海易积通电子商务有限公司<br>2016年会节目投票<div>(本页面数据实时变化，无需刷新页面)</div></h2>
+    <div class="titleBox">
+      <h2 class="head">上海易积通电子商务有限公司<br>2016年会节目投票<div>(本页面数据实时变化，无需刷新页面)</div></h2>
+    </div>
     <ul>
       <li class="bar-wrap">
         <label>开场童谣（表演者：邓鸣贺）</label>
@@ -43,6 +45,10 @@ export default {
     }
   },
   created () {
+    if(!localStorage.getItem('hasReadRule')){
+      this.$router.push('voteRule')
+      return
+    }
     VOTE.init(this)
     VOTE.getVoteInfo()
   },
@@ -58,6 +64,7 @@ export default {
 </script>
 
 <style scoped>
+.titleBox{padding-top:60px;}
 h2.head {text-align: center;color: #f43531;font-size: 35px;line-height: 40px; font-weight: 900;}
 h2.head div{font-size: 25px;color:#999;margin-top: 5px;font-weight: normal;}
 
