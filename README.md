@@ -1,27 +1,31 @@
-# my-project
+# 概述
 
-> A Vue.js project
+> 为公司年会写的小项目，主要功能为弹幕、聊天室和节目投票。前端使用Vue框架，聊天室功能基于websocket，后台由nodeJs实现。
 
-## Build Setup
+## 使用方法
 
+#### 首先你需要安装npm和nodeJs,安装方法自行google
+#### 下载项目，从命令行进入项目目录
 ``` bash
 # install dependencies
 npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
-
-# build for production with minification
-npm run build
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+#### 打开另一个命令行窗口,同样进入项目目录
+``` bash
+# start server
+node server/index.js
+```
+
+## 主要界面图示
+
+![image](https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/danmu.jpeg)
+![image](https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/chat.jpeg)
+![image](https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/vote.jpeg)
+
+## 总结
+
+由于一些其他原因没在年会上正式使用，也没经过系统的测试，所以距离完善还有一定差距。但功能总算是完成了，自己从中也学到不少东西，日后类似功能就可以以此为基础构建。希望能对你有帮助吧。
