@@ -28,12 +28,12 @@ export default {
   name: 'ChatHead',
   data () {
     return {
-      msg: '',
       CHAT: CHAT
     }
   },
-  ready () {
-    console.log(11, CHAT.onlineCount)
+  created () {
+    var con = this
+    CHAT.init(con)
   },
   components: {
     ChatBody,

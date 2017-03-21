@@ -5,11 +5,10 @@
         <system-msg :msg="msgObj.user.username"></system-msg>
       </template>
       <template v-if="!msgObj.login&&!msgObj.logout">
-        <other-msg v-if="msgObj.userid!=CHAT.userid" :name="msgObj.username" :msg="msgObj.msg" :color="msgObj.color" :photo="msgObj.photo"></other-msg>
-      <self-msg v-if="msgObj.userid==CHAT.userid" :msg="msgObj.msg" :color="msgObj.color" :photo="msgObj.photo" ></self-msg>
+        <other-msg v-if="msgObj.UUID!=CHAT.UUID" :name="msgObj.username" :msg="msgObj.msg" :color="msgObj.color" :photo="msgObj.photo"></other-msg>
+      <self-msg v-if="msgObj.UUID==CHAT.UUID" :msg="msgObj.msg" :color="msgObj.color" :photo="msgObj.photo" ></self-msg>
       </template>
     </template>
-    <!-- <other-msg></other-msg> -->
   </div>
 
 </template>
@@ -31,7 +30,6 @@
       if (!localStorage.getItem('name')) {
         this.$router.go('/login')
       }
-  //    this.visit()
     },
     components: {
       OtherMsg,
@@ -52,5 +50,6 @@
   overflow-x: hidden;
   background: url(../../assets/bg_chat.jpg) no-repeat;
   background-size: 100%;
+  padding-bottom: 120px;
 }
 </style>

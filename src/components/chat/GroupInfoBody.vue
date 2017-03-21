@@ -4,7 +4,7 @@
 	<div class="-bar"></div>
 	<div class="-self">
 		<div class="-title">
-			我在本群的信息
+			我在聊天室的信息
 		</div>
 		<div class="-info">
       <img class="-header" :src="photo" />
@@ -15,10 +15,6 @@
       你可以随意修改头像和昵称
 		</div>
 	</div>
-	<div class="-bar"></div>
-	<div class="-del" @click="del()">删除并退出</div>
-	<div class="-bar"></div>
-	<div class="-bar"></div>
   <DialogUtil v-if="isShow" :fast-close="false">
     <div class="modify-box">
       <div class="-header" @click="changePhoto()">
@@ -59,10 +55,9 @@ export default{
     return {
       CHAT: CHAT,
       photo: localStorage.getItem('photo') || '../../assets/avatar/cute.png',
-      name: 'redream',
-      weichat: 'redream',
+      name: '',
       isShow: false,
-      fname: 'redream',
+      fname: '',
       isShowF: false
 
     }
@@ -96,23 +91,12 @@ export default{
       if (localStorage) {
         localStorage.setItem('name', this.name)
         localStorage.setItem('photo', this.photo)
-        localStorage.setItem('weichat', this.weichat)
       }
       this.isShow = false
       this.CHAT.changeInfo()
     },
     show () {
       this.isShow = true
-    },
-    del () {
-      if (localStorage) {
-        localStorage.removeItem('name')
-        localStorage.removeItem('userid')
-        localStorage.removeItem('photo')
-        localStorage.removeItem('weichat')
-      }
-      this.CHAT.logout()
-      this.$router.push('/')
     },
     showWeiChat (userObj) {
       console.log(userObj)

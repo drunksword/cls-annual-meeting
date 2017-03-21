@@ -1,6 +1,6 @@
 <template>
 <div class="group-info-head-wrap">
-	<router-link  class="-left" to="/chatInfo">
+	<router-link  class="-left" to="/">
     <i class="iconfont icon-back"></i>
   </router-link >
   <div class="-mid">

@@ -1,10 +1,10 @@
 <template>
-	<div class="program" v-on:click="voteChange(data.id)" v-bind:class="{topLine: data.id < 3}">
+	<div class="program" v-on:click="voteChange(index)" v-bind:class="{topLine: index + 1 < 3}">
     <div class="head icon"></div>
     <div class="body"><div>{{ data.name }}</div></div>
     <div class="foot icon"></div>
 
-    <div class="actorLine">表演者：{{data.actor}}</div>
+    <div class="actorLine">表演者：{{data.actors}}</div>
     <div class="voteLine"><span class="left">给他投票</span><span class="select icon" v-bind:class="{selected: selected}"></span></div>
 	</div>
 </template>
@@ -15,26 +15,20 @@ import CommonUtil from '../../../util/util.js'
 
 export default {
   name: 'program',
-  props: ['data'],
-  data () {
-    return {
-      props: this.data
-    }
-  },
+  props: ['data', 'index'],
   computed: {
     selected () {
-      return this.$store.state.voteProList[this.props.id - 1] === 1
+      return this.$store.state.voteProList[this.index] === 1
     }
   },
   methods: {
     voteChange (proId) {
-      // this.selected = !this.selected
       var voteCount = 0
       var temp = this.$store.state.voteProList
       for (var i = 0; i < temp.length; i++) {
         voteCount += temp[i]
       }
-      if (voteCount >= 3 && temp[proId - 1] === 0) {
+      if (voteCount >= 3 && temp[proId] === 0) {
         CommonUtil.showToast('您只能投最多3票。')
         return
       }
@@ -55,7 +49,7 @@ export default {
   .program .body div{position: relative;margin: 0 auto; writing-mode: vertical-rl;}
   .program .foot{background-position: -61px -455px;height: 30px;width: 80px;margin: auto;}
 
-  .program .actorLine{margin-top: 15px;} 
+  .program .actorLine{margin-top: 15px;height: 50px;overflow: hidden;text-overflow: ellipsis;} 
   .program .voteLine .left{top:-25px;position: relative;}
 	.program .select{background-position: -72px -76px;height: 67px;width: 57px;display: inline-block;}
   .program .selected{background-position: -72px -5px;}

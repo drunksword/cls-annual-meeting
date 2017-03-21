@@ -12,14 +12,9 @@ const CHAT = {
   onlineCount: 0,
   onlineUsers: [],
   msgArr: [],
+  con: null,
   scrollToBottom: function () {
-    console.log(document.getElementById('body-wrapper').scrollHeight)
     document.getElementById('body-wrapper').scrollTop = document.getElementById('body-wrapper').scrollHeight
-  },
-  //  退出，本例只是一个简单的刷新
-  logout: function () {
-    this.socket.disconnect()
-    // location.reload()
   },
   //  提交聊天消息内容
   submit: function (msg) {
@@ -39,9 +34,7 @@ const CHAT = {
   },
   //  更新系统消息，本例中在用户加入、退出的时候调用
   updateSysMsg: function (o) {
-    //  当前在线用户列表
     this.onlineUsers = o.onlineUsers
-    //  当前在线人数
     this.onlineCount = o.onlineCount
   },
   changeInfo () {
@@ -51,7 +44,11 @@ const CHAT = {
     this.photo = localStorage.getItem('photo')
     this.socket.emit('changeInfo', {UUID: this.UUID, username: this.username, color: this.color, photo: this.photo})
   },
-  init: function () {
+  init: function (con) {
+    if(this.socket != null){
+      return
+    }
+    this.con = con
     this.UUID = localStorage.getItem('UUID')
     this.username = localStorage.getItem('name')
     this.color = localStorage.getItem('color')
@@ -60,22 +57,19 @@ const CHAT = {
       return 
     }
 
-    try{
-      this.socket = io.connect('ws://' + nodeServer)
-      localStorage.setItem('hasLogined', true)
-    }catch(e){
-      alert('登录失败：' + e.message)
-      return
-    }
+    this.socket = io.connect('ws://' + nodeServer)
 
     //  告诉服务器端有用户登录
-    this.socket.emit('Login', {UUID: this.UUID, username: this.username, color: this.color})
-    //  心跳包，30s左右无数据浏览器会断开连接Heartbeat
+    this.socket.emit('loginChat', {UUID: this.UUID, username: this.username, color: this.color})
+    //  心跳包Heartbeat，30s左右无数据浏览器会断开连接
     setInterval(() => {
       this.socket.emit('heartbeat', 1)
     }, 10000)
+    this.socket.on('heartbeat', function(){
+      //do nothing
+    })
     //  监听新用户登录
-    this.socket.on('Login', function (obj) {
+    this.socket.on('loginChat', function (obj) {
       CHAT.updateSysMsg(obj)
       CHAT.msgArr.push(obj)
     })
@@ -90,7 +84,8 @@ const CHAT = {
     //  监听消息发送
     this.socket.on('message', function (obj) {
       CHAT.msgArr.push(obj)
-      if ((window.navigator.appVersion.match(/iphone/gi) || window.navigator.appVersion.match(/ipad/gi) || window.navigator.appVersion.match(/android/gi)) && !window.navigator.appVersion.match(/windows/gi)) {
+      var isMobile = (window.navigator.appVersion.match(/iphone/gi) || window.navigator.appVersion.match(/ipad/gi) || window.navigator.appVersion.match(/android/gi)) && !window.navigator.appVersion.match(/windows/gi)
+      if (isMobile) {
         CHAT.scrollToBottom()
       } else {
         var item = {
@@ -103,6 +98,12 @@ const CHAT = {
           'color': obj.color
         }
         $('body').barrager(item)
+      }
+    })
+    this.socket.on('goVote', function () {
+      var isMobile = (window.navigator.appVersion.match(/iphone/gi) || window.navigator.appVersion.match(/ipad/gi) || window.navigator.appVersion.match(/android/gi)) && !window.navigator.appVersion.match(/windows/gi)
+      if (isMobile) {
+        CHAT.con.$router.push('/voteHome')
       }
     })
   }

@@ -4,26 +4,9 @@
       <h2 class="head">上海易积通电子商务有限公司<br>2016年会节目投票<div>(本页面数据实时变化，无需刷新页面)</div></h2>
     </div>
     <ul>
-      <li class="bar-wrap">
-        <label>开场童谣（表演者：邓鸣贺）</label>
-        <!-- <div class="head"></div> -->
-        <div class="bar green" v-bind:data-percentage="voteCount[0].num + '票'" v-bind:style="{ width: voteCount[0].num + '%' }"></div>
-      </li>
-      <li class="bar-wrap">
-        <label>小拜年（表演者：胡海泉一家、陈羽凡、白百何夫妇）</label>
-        <div class="bar red" v-bind:data-percentage="voteCount[1].num" v-bind:style="{ width: voteCount[1].num + '%' }"></div>
-      </li>
-      <li class="bar-wrap">
-        <label>小品《今天的幸福》（表演者：沈腾、黄杨、艾伦）</label>
-        <div class="bar blue" v-bind:data-percentage="voteCount[2].num + '票'" v-bind:style="{ width: voteCount[2].num  + '%'}"></div>
-      </li>
-      <li class="bar-wrap">
-        <label>《魔术》（表演者：刘谦）</label>
-        <div class="bar purple" v-bind:data-percentage="voteCount[3].num" v-bind:style="{ width: voteCount[3].num  + '%'}"></div>
-      </li>
-      <li class="bar-wrap">
-        <label>相声《奋斗》（表演者：曹云金、刘云天）</label>
-        <div class="bar gray" v-bind:data-percentage="voteCount[4].num" v-bind:style="{ width: voteCount[4].num  + '%'}"></div>
+      <li class="bar-wrap" v-for="(program, index) in programList">
+        <label>{{program.name + '（表演者：' + program.actors + '）'}}</label>
+        <div class="bar" :class="program.color" v-bind:data-percentage="voteCount[index].num + '票'" v-bind:style="{ width: voteCount[index].num + '%' }"></div>
       </li>
     </ul>
     <div class="tongji">投票人数：{{ VOTE.votePeople }}， 总票数：{{ VOTE.voteCount }}</div>
@@ -35,21 +18,25 @@
 
 <script>
 import VOTE from '../../api/vote.js'
+import programList from '../../programList.js'
 
 export default {
   name: 'home',
   data () {
     return {
       voteCount: VOTE.voteDetail,
-      VOTE
+      VOTE,
+      programList: programList
     }
   },
   created () {
-    if(!localStorage.getItem('hasReadRule')){
+    VOTE.init(this)
+    
+    if(!localStorage.getItem('hasReadRule')){//未读过规则，跳转到规则页面
       this.$router.push('voteRule')
       return
     }
-    VOTE.init(this)
+    
     VOTE.getVoteInfo()
   },
   methods: {
@@ -57,7 +44,7 @@ export default {
       this.$router.push({name: 'vote'})
     },
     goChat () {
-      this.$router.push({path: 'chatInfo'})
+      this.$router.push('/')
     }
   }
 }

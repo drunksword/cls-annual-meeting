@@ -12,15 +12,14 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
-  {path: '/login', component: Login},
-  {path: '/chatInfo', component: ChatInfo},
-  {path: '/groupInfo', component: GroupInfo},
-  {path: '/danmu', name : 'danmu', component: resolve => require(['./components/chat/Danmu'], resolve)},
-  {path: '/rank', name : 'rank', component: resolve => require(['./components/chat/Rank'], resolve)},
-  {path: '/voteHome', name: 'home', component: resolve => require(['./components/vote/Home'], resolve)},
-  {path: '/vote', name: 'vote', component: resolve => require(['./components/vote/Vote'], resolve)},
-  {path: '/voteRule', name: 'voteRule', component: resolve => require(['./components/vote/VoteRule'], resolve)},
-  {path: '/unsupported', name: 'unsupported', component: resolve => require(['./components/Unsupported'], resolve)}
+    {path: '/login', component: Login},
+    {path: '/', component: ChatInfo},
+    {path: '/groupInfo', component: GroupInfo},
+    {path: '/danmu', name : 'danmu', component: resolve => require(['./components/chat/Danmu'], resolve)},
+    {path: '/voteHome', name: 'home', component: resolve => require(['./components/vote/Home'], resolve)},
+    {path: '/vote', name: 'vote', component: resolve => require(['./components/vote/Vote'], resolve)},
+    {path: '/voteRule', name: 'voteRule', component: resolve => require(['./components/vote/VoteRule'], resolve)},
+    {path: '/unsupported', name: 'unsupported', component: resolve => require(['./components/Unsupported'], resolve)}
   ]
 })
 /* eslint-disable no-new */

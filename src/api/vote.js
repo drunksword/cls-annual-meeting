@@ -9,16 +9,23 @@ const VOTE = {
   voteDetail: [{num: 0}, {num: 0}, {num: 0}, {num: 0}, {num: 0}],
   socket: null,
   con: null,
-  hasVoteDetail: [],
+  showRank: true,
 
   init: function (con) {
+    if(this.socket != null){
+      return
+    }
     this.con = con
     this.socket = io.connect('ws://' + nodeServer)
-    // if (!window.localStorage.UUID) {
-    //   window.localStorage.UUID = guid()
-    // }
 
-    this.socket.emit('login', {UUID: localStorage.UUID})
+    this.socket.emit('loginVote', {UUID: localStorage.UUID})
+    //  心跳包Heartbeat，30s左右无数据浏览器会断开连接
+    setInterval(() => {
+      this.socket.emit('heartbeat', 1)
+    }, 10000)
+    this.socket.on('heartbeat', function(){
+      //do nothing
+    })
 
     this.socket.on('hasVote', function (obj) {
       con.$store.state.voteProList = obj.uniqueVote
@@ -50,6 +57,18 @@ const VOTE = {
     this.socket.on('voteError', function (obj) {
       CommonUtil.showToast(obj.message)
     })
+
+    this.socket.on('goChat', function () {
+      VOTE.con.$router.push('/chatInfo')
+    })
+    this.socket.on('hideRank', function () {
+      VOTE.showRank = !VOTE.showRank
+      if(VOTE.showRank){
+        VOTE.getVoteInfo()
+      }else{
+        VOTE.voteDetail = [{num: 0}, {num: 0}, {num: 0}, {num: 0}, {num: 0}]
+      }
+    })
   },
 
   getVoteInfo: function () {
@@ -75,7 +94,6 @@ function countUp (startVal, endValList, duration, voteCount) {
       value = (value > endValList[i].num) ? endValList[i].num : value
       voteCount[i].num = value.toFixed(0)
     }
-    // console.log(timestamp + ',' + voteCount[2].num)
     progress < duration && window.requestAnimationFrame(startCount)
   }
   window.requestAnimationFrame(startCount)

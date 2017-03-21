@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="dishBox">
-      <program v-for="item in programList" :data="item">
+      <program v-for="(item, index) in programList" :data="item" :index="index">
     </div>
     <button v-on:click="goDetail"></button>
   </div>
@@ -9,6 +9,7 @@
 
 <script>
 import Program from './include/Program'
+import programList from '../../programList.js'
 
 export default {
   name: 'vote',
@@ -18,15 +19,8 @@ export default {
   data () {
     return {
       state: this.$store.state,
-      programList: [{id: 1, name: '大变活人1', actor: 'xxx'},
-                    {id: 2, name: '大变活人2', actor: 'xxx'},
-                    {id: 3, name: '大变活人3', actor: 'xxx'},
-                    {id: 4, name: '大变活人4', actor: 'xxx'},
-                    {id: 5, name: '大变活人5', actor: 'xxx'}]
+      programList: programList
     }
-  },
-  created () {
-    this.$store.commit('setPage', 'vote')
   },
   computed: {
     count () {

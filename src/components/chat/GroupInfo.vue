@@ -32,8 +32,6 @@ export default{
     transition: all .3s ease;
     transform: translate(0);
 	}
-	/* .slide-enter 定义进入的开始状态 */
-	/* .slide-leave 定义离开的结束状态 */
 	.slide-enter, .slide-leave {
 		transform: translate(100%,-100%);
 	}

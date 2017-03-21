@@ -56,7 +56,7 @@ export default {
     padding: 10px;
     position: relative;
     left: 60px;
-    top: -20px;
+    top: -33px;
     border-radius: 6px;
     max-width: calc(100% - 180px);
     font-size: 16px;

@@ -13,14 +13,6 @@
 <script>
   export default {
     name: 'voteRule',
-    data () {
-      return {
-      }
-    },
-    created () {
-      this.$store.commit('setPage', 'voteRlt')
-      window.localStorage.viewRule = 1
-    },
     methods: {
       goVote () {
         localStorage.setItem('hasReadRule', true)

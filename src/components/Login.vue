@@ -37,14 +37,13 @@ export default {
   methods: {
     login () {
       this.name = this.name.slice(0, 10)
-
       localStorage.setItem('name', this.name || '编号' + parseInt(1000 * Math.random()))
       localStorage.setItem('color', util.randomColor())
-      localStorage.setItem('UUID', util.genUUid())
+      localStorage.setItem('UUID', localStorage.getItem('UUID') || util.genUUid())
       localStorage.setItem('photo', util.randomPhoto())
       
-      CHAT.init()
-      this.$router.push('/chatInfo')
+      localStorage.setItem('hasLogined', true)
+      this.$router.push('/')
     }
   }
 }
@@ -156,8 +155,6 @@ export default {
   .login-wrapper a {
     color: #999;
   }
-  /* .loginslide-enter 定义进入的开始状态 */
-  /* .loginslide-leave 定义离开的结束状态 */
   .loginslide-leave,
   .loginslide-enter {
     transform: translate(0%, 0);

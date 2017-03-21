@@ -1,24 +1,8 @@
 <template>
-  <ul>
-    <li class="bar-wrap">
-      <div class="barBox"><div class="bar green" v-bind:data-percentage="voteCount[0].num + '票'" v-bind:style="{ height: voteCount[0].num + '%' }"></div></div>
-      <label>开场童谣 <div class="actors">表演者：邓鸣贺</div></label>
-    </li>
-    <li class="bar-wrap">
-      <div class="barBox"><div class="bar red" v-bind:data-percentage="voteCount[1].num + '票'" v-bind:style="{ height: voteCount[1].num + '%' }"></div></div>
-      <label>小拜年<div class="actors">表演者：胡海泉家、陈羽凡、白百何夫妇</div></label>
-    </li>
-    <li class="bar-wrap">
-      <div class="barBox"><div class="bar blue" v-bind:data-percentage="voteCount[2].num + '票'" v-bind:style="{ height: voteCount[2].num  + '%'}"></div></div>
-      <label>小品《今天的幸福》<div class="actors">表演者：沈腾、黄杨、艾伦</div></label>
-    </li>
-    <li class="bar-wrap">
-      <div class="barBox"><div class="bar purple" v-bind:data-percentage="voteCount[3].num + '票'" v-bind:style="{ height: voteCount[3].num  + '%'}"></div></div>
-      <label>《魔术》 <div class="actors">表演者：刘谦</div></label>
-    </li>
-    <li class="bar-wrap">
-      <div class="barBox"><div class="bar gray" v-bind:data-percentage="voteCount[4].num + '票'" v-bind:style="{ height: voteCount[4].num  + '%'}"></div></div>
-      <label>相声《奋斗》 <div class="actors">表演者：曹云金、刘云天</div></label>
+  <ul v-if="VOTE.showRank">
+    <li class="bar-wrap" v-for="(program, index) in programList">
+      <div class="barBox"><div class="bar" :class="program.color" v-bind:data-percentage="VOTE.voteDetail[index].num + '票'" v-bind:style="{ height: VOTE.voteDetail[index].num + '%' }"></div></div>
+      <label>{{program.name}} <div class="actors">表演者：{{program.actors}}</div></label>
     </li>
   </ul>
 </template>
@@ -28,15 +12,16 @@
   import CHAT from '../../api/chat'
   import VOTE from '../../api/vote.js'
   import {randomColor, genUUid, randomPhoto} from '../../util/util' 
+  import programList from '../../programList.js'
 
   export default {
     name: 'Danmu',
     data () {
       return {
-        CHAT,
+        VOTE,
         msg: '',
         showButton: false,
-        voteCount: VOTE.voteDetail
+        programList: programList
       }
     },
     created () {
@@ -44,9 +29,17 @@
       $('body').css('background-size', '100% 100%')
       $('body').css('background-image', 'url(' + bg+ ')')
 
+      if (localStorage) {
+        localStorage.setItem('name', '弹幕')
+        localStorage.setItem('UUID', localStorage.getItem('UUID') || genUUid())
+        localStorage.setItem('color', randomColor())
+        localStorage.setItem('photo', randomPhoto())
+      }
+      CHAT.init(this)
+
       VOTE.init(this)
       VOTE.getVoteInfo()
-
+      
       $.fn.barrager = function (barrage) {
         barrage = $.extend({
           close: true,
@@ -95,7 +88,7 @@
         var speed = 100
         var t = windowWidth / speed
         divBarrager.css('transition', 'margin-right ' + t + 's linear')
-        console.log('width' + width)
+        console.log('width:' + width)
         divBarrager.css('right', -width)
         divBarragerBox.css('width', width)
         divBarrager.css('margin-right', windowWidth)
@@ -104,13 +97,6 @@
       $.fn.barrager.removeAll = function () {
         $('.barrage').remove()
       }
-      if (window.localStorage) {
-        window.localStorage.setItem('name', '弹幕')
-        window.localStorage.setItem('UUID', genUUid())
-        window.localStorage.setItem('color', randomColor())
-        window.localStorage.setItem('photo', randomPhoto())
-      }
-      CHAT.init()
     }
   }
 </script>
