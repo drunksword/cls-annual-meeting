@@ -4,8 +4,9 @@
 
 ## 使用方法
 
-#### 首先你需要安装npm和nodeJs,安装方法自行google
-#### 下载项目，从命令行进入项目目录
+首先你需要安装npm和nodeJs，安装方法自行google
+
+下载项目，从命令行进入项目目录
 ``` bash
 # install dependencies
 npm install
@@ -22,9 +23,9 @@ node server/index.js
 
 ## 主要界面图示
 
-![image](https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/danmu.jpeg)
-![image](https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/chat.jpeg)
-![image](https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/vote.jpeg)
+![image](https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/danmu.png)
+![image](https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/chat.png)
+![image](https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/vote.png)
 
 ## 总结
 
