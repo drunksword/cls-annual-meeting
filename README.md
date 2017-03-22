@@ -23,9 +23,9 @@ node server/index.js
 
 ## 主要界面图示
 <br/>
-<img height='600px' width='auto' style='display:inline-block' src='https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/danmu.png'/>
-<img height='600px' width='auto' style='display:inline-block' src='https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/chat.png'/>
-<img height='600px' width='auto' style='display:inline-block' src='https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/vote.png'/>
+<img height='300px' width='auto' style='display:inline' src='https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/danmu.png'/>
+<img height='300px' width='auto' style='display:inline' src='https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/chat.png'/>
+<img height='300px' width='auto' style='display:inline' src='https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/vote.png'/>
 
 ## 总结
 
