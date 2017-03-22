@@ -49,7 +49,7 @@ export default {
   .program .body div{position: relative;margin: 0 auto; writing-mode: vertical-rl;}
   .program .foot{background-position: -61px -455px;height: 30px;width: 80px;margin: auto;}
 
-  .program .actorLine{margin-top: 15px;height: 50px;overflow: hidden;text-overflow: ellipsis;} 
+  .program .actorLine{margin-top: 15px;height: 60px;line-height: 30px; overflow: hidden;text-overflow: ellipsis;} 
   .program .voteLine .left{top:-25px;position: relative;}
 	.program .select{background-position: -72px -76px;height: 67px;width: 57px;display: inline-block;}
   .program .selected{background-position: -72px -5px;}
