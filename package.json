@@ -2,7 +2,7 @@
   "name": "we-chat",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "caizhongdong <caizhongdong@clschina.com>",
+  "author": "shi & cai",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
