@@ -10,7 +10,10 @@
 ``` bash
 # install dependencies
 npm install
+```
+npm install出错时，重新执行一次就好
 
+``` bash
 # serve with hot reload at localhost:8080
 npm run dev
 ```
