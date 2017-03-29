@@ -13,9 +13,6 @@ const CHAT = {
   onlineUsers: [],
   msgArr: [],
   con: null,
-  scrollToBottom: function () {
-    document.getElementById('body-wrapper').scrollTop = document.getElementById('body-wrapper').scrollHeight
-  },
   //  提交聊天消息内容
   submit: function (msg) {
     if (msg !== '') {
@@ -85,9 +82,7 @@ const CHAT = {
     this.socket.on('message', function (obj) {
       CHAT.msgArr.push(obj)
       var isMobile = (window.navigator.appVersion.match(/iphone/gi) || window.navigator.appVersion.match(/ipad/gi) || window.navigator.appVersion.match(/android/gi)) && !window.navigator.appVersion.match(/windows/gi)
-      if (isMobile) {
-        CHAT.scrollToBottom()
-      } else {
+      if (!isMobile) {
         var item = {
           'img': obj.photo,
           'info': obj.msg,

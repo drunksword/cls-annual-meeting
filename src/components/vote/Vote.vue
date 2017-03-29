@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="dishBox">
-      <program v-for="(item, index) in programList" :data="item" :index="index">
+      <program v-for="(item, index) in programList" :data="item" :index="index"></program>
     </div>
     <button v-on:click="goDetail"></button>
   </div>

@@ -1,12 +1,12 @@
 <template>
   <div class="body-wrapper" id="body-wrapper">
-    <template v-for="msgObj in CHAT.msgArr">
+    <template v-for="msgObj in msgs">
       <template v-if="msgObj.login">
         <system-msg :msg="msgObj.user.username"></system-msg>
       </template>
       <template v-if="!msgObj.login&&!msgObj.logout">
-        <other-msg v-if="msgObj.UUID!=CHAT.UUID" :name="msgObj.username" :msg="msgObj.msg" :color="msgObj.color" :photo="msgObj.photo"></other-msg>
-      <self-msg v-if="msgObj.UUID==CHAT.UUID" :msg="msgObj.msg" :color="msgObj.color" :photo="msgObj.photo" ></self-msg>
+        <other-msg v-if="msgObj.UUID!=chat.UUID" :name="msgObj.username" :msg="msgObj.msg" :color="msgObj.color" :photo="msgObj.photo"></other-msg>
+      <self-msg v-if="msgObj.UUID==chat.UUID" :msg="msgObj.msg" :color="msgObj.color" :photo="msgObj.photo" ></self-msg>
       </template>
     </template>
   </div>
@@ -23,12 +23,20 @@
     name: 'ChatBody',
     data () {
       return {
-        CHAT
+        chat : CHAT,
+        msgs : CHAT.msgArr
       }
     },
     ready () {
       if (!localStorage.getItem('name')) {
         this.$router.go('/login')
+      }
+    },
+    watch : {
+      msgs () {
+        setTimeout(function () {
+          document.getElementById('body-wrapper').scrollTop = document.getElementById('body-wrapper').scrollHeight
+        }, 20)
       }
     },
     components: {
@@ -50,6 +58,6 @@
   overflow-x: hidden;
   background: url(../../assets/bg_chat.jpg) no-repeat;
   background-size: 100%;
-  padding-bottom: 120px;
+  /*padding-bottom: 120px;*/
 }
 </style>
