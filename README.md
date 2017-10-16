@@ -25,8 +25,8 @@ node server/index.js
 ```
 
 ## 主要界面图示
-<img height='500px' width='auto' src='https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/danmu.png'/>  
-<img height='500px' width='auto' src='https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/chat.png'/>        <img height='500px' width='auto' src='https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/vote.png'/>
+<img height='500px' width='auto' src='https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/danmu.png' />  
+<img height='500px' width='auto' src='https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/chat.png' />        <img height='500px' width='auto' src='https://github.com/soggotheslitherer/cls-annual-meeting/blob/master/static/vote.png' />
 
 ## 总结
 
